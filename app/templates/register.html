@@ -1,0 +1,48 @@
+<div class="box"  ng-controller="RegisterController" >
+    <h2>Register</h2>
+    <p>
+        <label for="username">Username:</label>
+        <input type="text" id="username" ng-model="userData.username"  />
+    </p>
+    <p>
+        <label for="password">Password:</label>
+        <input type="password" id="password" ng-model="userData.password"  />
+    </p>
+    <p>
+        <label for="confirmPassword">Confirm password:</label>
+        <input type="password" id="confirmPassword" ng-model="userData.confirmPassword"  />
+    </p>
+    <p>
+        <label for="name">Name:</label>
+        <input type="text" id="name" ng-model="userData.name"  />
+    </p>
+    <p>
+        <label for="email">Email:</label>
+        <input type="text" id="email" ng-model="userData.email"  />
+    </p>
+    <p>
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" ng-model="userData.phone"  />
+    </p>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Gender</label>
+        <div class="col-md-9">
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="userData.gender" name="gender" value="male">Male
+                </label>
+                <label>
+                    <input type="radio" ng-model="userData.gender" name="gender" value="female">Female
+                </label>
+                <label>
+                    <input type="radio" ng-model="userData.gender" name="gender" value="other">Other
+                </label>
+            </div>
+            <div class="radio">
+            </div>
+        </div>
+    </div>
+    <p>
+        <a ng-click="register(userData)" class="button">Register</a>
+    <p>
+</div>

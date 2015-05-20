@@ -1,0 +1,11 @@
+<div ng-controller="HomeController">
+    <div id="guestBox" ng-if="!isLoggedIn">
+        <p id="welecomeScreenMessage">Welcome to Angular project</p>
+        <div ng-include="'templates/login.html'" ></div>
+        <div ng-include="'templates/register.html'"></div> 
+    </div>
+   
+</div>
+
+
+
