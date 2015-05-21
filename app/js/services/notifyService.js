@@ -11,6 +11,14 @@ app.factory('notifyService',
                     timeout: 1000}
                 );
             },
+            showWarning: function  (msg) {
+                noty({
+                    text: msg,
+                    type: 'warning',
+                    layout: 'topCenter',
+                    timeout: 1000
+                });
+            },
             showError: function(msg, serverError) {
                 // Collect errors to display from the server response
                 var errors = [];

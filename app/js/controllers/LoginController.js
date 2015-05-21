@@ -5,8 +5,10 @@ app.controller('LoginController',
         $scope.login = function(userData) {
             authService.login(userData,
                 function success(data) {
-                    console.log(data);
                     notifyService.showInfo("Login successful");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
                     $location.path("/");
                 },
                 function error(err) {

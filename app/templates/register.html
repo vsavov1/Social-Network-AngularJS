@@ -1,48 +1,25 @@
-<div class="box"  ng-controller="RegisterController" >
-    <h2>Register</h2>
-    <p>
-        <label for="username">Username:</label>
-        <input type="text" id="username" ng-model="userData.username"  />
-    </p>
-    <p>
-        <label for="password">Password:</label>
-        <input type="password" id="password" ng-model="userData.password"  />
-    </p>
-    <p>
-        <label for="confirmPassword">Confirm password:</label>
-        <input type="password" id="confirmPassword" ng-model="userData.confirmPassword"  />
-    </p>
-    <p>
-        <label for="name">Name:</label>
-        <input type="text" id="name" ng-model="userData.name"  />
-    </p>
-    <p>
-        <label for="email">Email:</label>
-        <input type="text" id="email" ng-model="userData.email"  />
-    </p>
-    <p>
-        <label for="phone">Phone:</label>
-        <input type="text" id="phone" ng-model="userData.phone"  />
-    </p>
-    <div class="form-group">
-        <label class="col-md-3 control-label">Gender</label>
-        <div class="col-md-9">
-            <div class="radio">
-                <label>
-                    <input type="radio" ng-model="userData.gender" name="gender" value="male">Male
-                </label>
-                <label>
-                    <input type="radio" ng-model="userData.gender" name="gender" value="female">Female
-                </label>
-                <label>
-                    <input type="radio" ng-model="userData.gender" name="gender" value="other">Other
-                </label>
+<div id="registerBox"  ng-controller="RegisterController" >
+    <p>Register</p>
+        <input type="text" id="username" placeholder="Username" ng-model="userData.username"  />
+        <input type="password" id="password" placeholder="Password" ng-model="userData.password"  />
+        <input type="password" id="confirmPassword" placeholder="Repeat password" ng-model="userData.confirmPassword"  />
+        <input type="text" id="name" placeholder="Name" ng-model="userData.name"  />
+        <input type="text" id="email" placeholder="Email" ng-model="userData.email"  />
+        <div id="registerGender">
+            <div id="maleBox">
+                <input type="radio" id="male" ng-model="userData.gender" name="gender" value="male"/>
+                <label for="male" ><span></span><p>Male</p></label>
             </div>
-            <div class="radio">
+
+            <div id="femaleBox">
+                <input type="radio" id="female" ng-model="userData.gender" name="gender" value="female">
+                <label for="female" id="test"><span></span><p>Female</p></label>
+            </div>
+            
+            <div id="otherBox">
+                <input type="radio" id="other" ng-model="userData.gender" name="gender" value="other"> 
+                <label for="other" id="test"><span></span><p>Other</p></label> 
             </div>
         </div>
-    </div>
-    <p>
-        <a ng-click="register(userData)" class="button">Register</a>
-    <p>
+    <a ng-click="register(userData)">Register</a>
 </div>

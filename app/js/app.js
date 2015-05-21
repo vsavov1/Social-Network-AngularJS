@@ -7,7 +7,9 @@ app.constant('baseServiceUrl', 'http://softuni-ads.azurewebsites.net');
 app.config(function ($routeProvider) {
 
     $routeProvider.when('/', {
-        templateUrl: 'templates/welcome.html',
+        templateUrl: 'templates/home.html',
+        controller: 'MainController'
+
     });
 
         //    $routeProvider.when('/login', {

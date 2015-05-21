@@ -42,19 +42,110 @@ table {
 }
 
 body {
-    font-family: tahoma, sans-serif;
+    font-family: Segoe UI Light;, sans-serif;
 }
 
-#loginButton, #registerButton {
-  margin-top: 100px;
-  text-align: center
-}
-#welecomeScreenMessage{ 
-  margin-top: 200px;
-  font-size: 20px;
-}
 #wrap {
   margin: 0 auto;
   width: 1000px;
-  text-align: center
+}
+#welecomeScreenMessage{ 
+  margin-top: 200px;
+  margin-left: 370px;
+  font-size: 20px;
+  float: left;
+}
+#welcomeVerticlaHr {
+  height: 350px;
+  margin-top: 25px;
+  width: 1px;
+  background-color: #f96c65;
+  float:left;
+}
+#loginBox, #registerBox {
+  width: 400px;
+  height: auto;
+  float: left;
+  margin: 0 auto;
+  margin: 49px;
+  text-align: center;
+}
+#loginBox p, #registerBox p {
+  font-size: 24px;
+  margin: 7px;
+}
+#loginBox input, #registerBox input{
+  display: block;
+  height: 25px;
+  margin-left: 115px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #e3e4e8 ;
+}
+#padd {
+  height: 5px;
+}
+#loginBox input[type='text'], #loginBox input[type='password'],
+#registerBox input[type='text'], #registerBox input[type='password'] {
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-family: Segoe UI Light;
+  font-size: 17px;
+}
+
+#loginBox a, #registerBox a {
+  width: 138px;
+  height: 19px;
+  margin: auto;
+  background-color: #f96c65;
+  border-radius: 5px;
+  padding: 8px 15px 10px 15px;
+  display: block;
+  color: #fff;
+  font-size: 20px;
+  font-family: Segoe UI Light;
+  cursor: pointer;
+}
+#registerGender   {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 18px;
+}
+#registerGender  input[type=radio] {
+    display:none; 
+}
+#registerGender input[type=radio] + label {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+#registerGender label p{
+  float: left;
+  margin-left: 28px;
+  margin-top: -2px;
+}
+#maleBox, #femaleBox, #otherBox {
+  float: left;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+#maleBox input[type=radio] + label {
+    background:url("../img/maleicon.png");
+}
+#maleBox input[type=radio]:checked + label { 
+   background: url("../img/maleiconChecked.png");
+}
+#femaleBox input[type=radio] + label {
+    background:url("../img/femaleicon.png");
+}
+#femaleBox input[type=radio]:checked + label { 
+   background: url("../img/femaleiconChecked.png");
+}
+#otherBox input[type=radio] + label {
+    background:url("../img/othericon.png");
+}
+#otherBox input[type=radio]:checked + label { 
+   background: url("../img/othericonChecked.png");
 }
