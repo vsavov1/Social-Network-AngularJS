@@ -20,11 +20,11 @@ app.factory('notifyService',
                 });
             },
             showError: function(msg, serverError) {
-                // Collect errors to display from the server response
                 var errors = [];
                 if (serverError && serverError.error_description) {
                     errors.push(serverError.error_description);
                 }
+
                 if (serverError && serverError.modelState) {
                     var modelStateErrors = serverError.modelState;
                     for (var propertyName in modelStateErrors) {
@@ -36,14 +36,16 @@ app.factory('notifyService',
                         }
                     }
                 }
+
                 if (errors.length > 0) {
                     msg = msg + ":<br>" + errors.join("<br>");
                 }
+
                 noty({
                     text: msg,
                     type: 'error',
                     layout: 'topCenter',
-                    timeout: 5000}
+                    timeout: 4000}
                 );
             }
         }

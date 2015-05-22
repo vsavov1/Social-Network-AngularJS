@@ -6,7 +6,7 @@ app.factory('authService',
             login: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/user/login',
+                    url: baseServiceUrl + '/api/users/login',
                     data: userData
                 };
                 
@@ -19,7 +19,7 @@ app.factory('authService',
             register: function(userData, success, error) {
                 var request = {
                     method: 'POST',
-                    url: baseServiceUrl + '/api/user/register',
+                    url: baseServiceUrl + '/api/users/register',
                     data: userData
                 };
                 $http(request).success(function(data) {
@@ -28,8 +28,20 @@ app.factory('authService',
                 }).error(error);
             },
 
-            logout: function() {
-                delete sessionStorage['currentUser'];
+            logout: function(success, error) {
+                var userObject = JSON.parse(sessionStorage['currentUser']);
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/users/logout',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userObject.access_token
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                    delete sessionStorage['currentUser'];
+                }).error(error);
             },
 
             getCurrentUser : function() {
@@ -39,22 +51,10 @@ app.factory('authService',
                 }
             },
 
-            isAnonymous : function() {
-                return sessionStorage['currentUser'] == undefined;
-            },
-
             isLoggedIn : function() {
                 return sessionStorage['currentUser'] != undefined;
             },
 
-            getAuthHeaders : function() {
-                var headers = {};
-                var currentUser = this.getCurrentUser();
-                if (currentUser) {
-                    headers['Authorization'] = 'Bearer ' + currentUser.access_token;
-                }
-                return headers;
-            }
         }
     }
 );

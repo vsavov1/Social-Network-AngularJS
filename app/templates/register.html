@@ -1,4 +1,4 @@
-<div id="registerBox"  ng-controller="RegisterController" >
+<div id="registerBox"  ng-controller="UserController" >
     <p>Register</p>
         <input type="text" id="username" placeholder="Username" ng-model="userData.username"  />
         <input type="password" id="password" placeholder="Password" ng-model="userData.password"  />
@@ -7,17 +7,17 @@
         <input type="text" id="email" placeholder="Email" ng-model="userData.email"  />
         <div id="registerGender">
             <div id="maleBox">
-                <input type="radio" id="male" ng-model="userData.gender" name="gender" value="male"/>
+                <input type="radio" id="male" ng-model="userData.gender" name="gender" value="1"/>
                 <label for="male" ><span></span><p>Male</p></label>
             </div>
 
             <div id="femaleBox">
-                <input type="radio" id="female" ng-model="userData.gender" name="gender" value="female">
+                <input type="radio" id="female" ng-model="userData.gender" name="gender" value="2">
                 <label for="female" id="test"><span></span><p>Female</p></label>
             </div>
             
             <div id="otherBox">
-                <input type="radio" id="other" ng-model="userData.gender" name="gender" value="other"> 
+                <input type="radio" id="other" ng-model="userData.gender" name="gender" value="0"> 
                 <label for="other" id="test"><span></span><p>Other</p></label> 
             </div>
         </div>

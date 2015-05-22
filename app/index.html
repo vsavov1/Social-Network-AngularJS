@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html ng-app="app" ng-controller="AppController">
+<html ng-app="app" ng-controller="MainController">
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-	<header id="app-header">
-    	<!-- <div ng-include="'templates/partial/header.html'"></div> -->
-	</header>
-	<div id="wrap" ng-view>
-    </div>
+	<div id="wrap" ng-view></div>
+
+
 	<script src="lib/angular/angular.js"></script>
 	<script src="lib/angular/angular-route.js"></script>
 	<script src="lib/angular/angular-resource.js"></script>
@@ -22,10 +20,7 @@
 	<script src="js/services/AuthenticationService.js"></script>
 	<script src="js/services/notifyService.js"></script>
 
-
-	<script src="js/controllers/AppController.js"></script>
 	<script src="js/controllers/MainController.js"></script>
-	<script src="js/controllers/LoginController.js"></script>
-	<script src="js/controllers/RegisterController.js"></script>
+	<script src="js/controllers/UserController.js"></script>
 </body>
 </html>
