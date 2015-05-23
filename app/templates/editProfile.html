@@ -1,0 +1,22 @@
+<div id="editProfileBox"  ng-controller="ProfileController" >
+    <p>Edit profile</p>
+        <input type="text" id="name" placeholder="Name" ng-model="userData.name"  />
+        <input type="text" id="email" placeholder="Email" ng-model="userData.email"  />
+        <div id="registerGender">
+            <div id="maleBox">
+                <input type="radio" id="male" ng-model="userData.gender" name="gender" value="1" />
+                <label for="male"><span></span><p>Male</p></label>
+            </div>
+
+            <div id="femaleBox">
+                <input type="radio" id="female" ng-model="userData.gender" name="gender" value="2">
+                <label for="female" id="test"><span></span><p>Female</p></label>
+            </div>
+            
+            <div id="otherBox">
+                <input type="radio" id="other" ng-model="userData.gender" name="gender" value="0"> 
+                <label for="other" id="test"><span></span><p>Other</p></label> 
+            </div>
+        </div>
+    <a ng-click="editProfile(userData)">Save changes</a>
+</div>

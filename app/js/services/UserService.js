@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('authService',
+app.factory('userService',
     function ($http, baseServiceUrl) {
         return {
             login: function(userData, success, error) {
@@ -43,18 +43,60 @@ app.factory('authService',
                     delete sessionStorage['currentUser'];
                 }).error(error);
             },
+            
+            getDataAboutMe :  function (success, error) {
+                var userObject = JSON.parse(sessionStorage['currentUser']);
+                var request = {
+                    method: 'get',
+                    url: baseServiceUrl + '/api/me',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userObject.access_token
+                    }
+                };
 
-            getCurrentUser : function() {
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            saveDataAboutMe : function  (data) {
+                sessionStorage['name'] = data.name;
+                sessionStorage['email'] = data.email;
+                sessionStorage['profileImageData'] = data.profileImageData;
+                sessionStorage['coverImageData'] = data.coverImageData;
+                sessionStorage['gender'] = data.gender;
+            },
+
+            getUserGender : function () {
+                return  sessionStorage['gender'];
+            },
+
+            getUserFullName : function () {
+                return  sessionStorage['name'];
+            },
+
+            getUserEmail : function () {
+                return  sessionStorage['email'];
+            },
+
+            getUserName : function () {
                 var userObject = sessionStorage['currentUser'];
                 if (userObject) {
-                    return JSON.parse(sessionStorage['currentUser']);
+                    var jsonObject = JSON.parse(sessionStorage['currentUser'])
+                    return jsonObject.userName;
+                }
+            },
+
+            getCurrentUser : function(type) {
+                var userObject = sessionStorage['currentUser'];
+                if (userObject) {
+                    return JSON.parse(sessionStorage['currentUser']).type;
                 }
             },
 
             isLoggedIn : function() {
                 return sessionStorage['currentUser'] != undefined;
             },
-
         }
     }
 );

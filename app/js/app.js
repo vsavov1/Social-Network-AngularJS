@@ -8,13 +8,13 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when('/', {
         templateUrl: 'templates/home.html',
-        // controller: 'MainController'
+        controller: 'UserController'
     });
 
-        //    $routeProvider.when('/login', {
-        //        templateUrl: 'templates/login.html',
-        //        controller: 'LoginController'
-        //    });
+   $routeProvider.when('/profile', {
+       templateUrl: 'templates/editProfile.html',
+       controller: 'ProfileController'
+   });
 
     $routeProvider.otherwise({
         redirectTo: '/' 
@@ -22,11 +22,11 @@ app.config(function ($routeProvider) {
 
 });
 
-app.run(function ($rootScope, $location, authService) {
-  $rootScope.$on('$locationChangeStart', function (event) {
-    if ($location.path().indexOf("/user/") != -1 && !authService.isLoggedIn()) {
-      // Authorization check: anonymous site visitors cannot access user routes
-      $location.path("/");
-    }
-  });
-});
+// app.run(function ($rootScope, $location, userService) {
+//   $rootScope.$on('$locationChangeStart', function (event) {
+//     if ($location.path().indexOf("/user/") != -1 && !userService.isLoggedIn()) {
+//       // Authorization check: anonymous site visitors cannot access user routes
+//       $location.path("/");
+//     }
+//   });
+// });

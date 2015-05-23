@@ -1,17 +1,21 @@
 'use strict';
 
 app.controller('UserController',
-    function ($scope, $rootScope, $location, authService, notifyService) {
-        $scope.isLoggedIn = authService.isLoggedIn();
-        
+    function ($scope, $rootScope, $location, userService, notifyService) {
+        $scope.isLoggedIn = userService.isLoggedIn();
+        $scope.userFullName = userService.getUserFullName();
+
         $scope.login = function(userData) {
-            authService.login(userData,
+            userService.login(userData,
                 function success(data) {
                     // if (userData.username.length < 6) {
                     //     notifyService.showWarning("Username length must be greater than 6 chars.");
                     //     return;
                     // }
                     // remove comment
+                    userService.getDataAboutMe(function success(dataAboutme) {
+                        userService.saveDataAboutMe(dataAboutme);
+                    })
                     notifyService.showInfo("Login successful");
                     setTimeout(function(){
                         window.location.reload();
@@ -45,9 +49,12 @@ app.controller('UserController',
                 return;
             }
 
-            authService.register(userData,
+            userService.register(userData,
                 function success() {
                     notifyService.showInfo("User registered successfully");
+                        userService.getDataAboutMe(function success(dataAboutme) {
+                            userService.saveDataAboutMe(dataAboutme);
+                        })
                       setTimeout(function(){
                         window.location.reload();
                     }, 500);
@@ -60,23 +67,15 @@ app.controller('UserController',
         };
 
         $scope.logout = function () {
-            authService.logout(
+            userService.logout(
                 function success() {
                     notifyService.showInfo("Logout successfully");
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 500);
+                    window.location.reload();
                     $location.path("/");
                 }, function error (err) {
-                    notifyService.showError("User Logout failed", err);
+                    notifyService.showError("Logout failed", err);
                 }
             );
-            // authService.logout(function success () {
-            //     notifyService.showInfo("Logout  successfully");
-            // },function  (argument) {
-            //     notifyService.showInfo("errrr  successfully");
-              
-            // });
         }
     }
 );

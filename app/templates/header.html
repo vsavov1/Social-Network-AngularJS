@@ -1,7 +1,12 @@
 <header ng-controller="MainController">
 	<div id="headerContainer">
 		<div id="userButtoms">
+			<a id="editProfile" href="#/profile" ng-click="editProfile()" ng-controller="UserController"></a>
 			<a id="logout" href="#/logout" ng-click="logout()" ng-controller="UserController"></a>
+		</div>
+		<div id="currentUser" ng-controller="UserController">
+			<img src="" alt="" height="50px" width="50px">
+			<p>{{userFullName}}</p>
 		</div>
 	</div>
 </header>    
