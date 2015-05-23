@@ -5,7 +5,7 @@
 			<a id="logout" href="#/logout" ng-click="logout()" ng-controller="UserController"></a>
 		</div>
 		<div id="currentUser" ng-controller="UserController">
-			<img src="" alt="" height="50px" width="50px">
+			<img ng-src="{{profileImageData}}" alt="" height="50px" width="50px">
 			<p>{{userFullName}}</p>
 		</div>
 	</div>

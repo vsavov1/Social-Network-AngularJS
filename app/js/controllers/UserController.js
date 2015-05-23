@@ -4,6 +4,7 @@ app.controller('UserController',
     function ($scope, $rootScope, $location, userService, notifyService) {
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userFullName = userService.getUserFullName();
+        $scope.profileImageData = userService.getProfilePicture();
 
         $scope.login = function(userData) {
             userService.login(userData,

@@ -43,7 +43,7 @@ app.factory('userService',
                     delete sessionStorage['currentUser'];
                 }).error(error);
             },
-            
+
             getDataAboutMe :  function (success, error) {
                 var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
@@ -65,6 +65,14 @@ app.factory('userService',
                 sessionStorage['profileImageData'] = data.profileImageData;
                 sessionStorage['coverImageData'] = data.coverImageData;
                 sessionStorage['gender'] = data.gender;
+            },
+
+            getCoverPicture : function () {
+                return  sessionStorage['coverImageData'];
+            },
+
+            getProfilePicture : function () {
+                return  sessionStorage['profileImageData'];
             },
 
             getUserGender : function () {

@@ -202,3 +202,11 @@ header {
   margin-top: 180px;
   margin-left: 230px;
 }
+#cps {
+  height: 15px;
+}
+
+#editProfileBox a {
+  width: 150px;
+  text-decoration: none;
+}
