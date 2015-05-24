@@ -210,6 +210,7 @@ header {
   text-decoration: none;
 }
 #searchBox {
+  height:;
   float: right;
 }
 #searchBar {
@@ -230,10 +231,10 @@ header {
 
 #search-overlay{
   display: none;
+  float: left;
   width: 200px;
   height: auto;
   background-color: white;
-  margin-top: -15px;
   opacity: 0.8;
   border-left: 1px solid #e3e4e8;
   border-bottom: 1px solid #e3e4e8;

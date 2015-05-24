@@ -13,10 +13,10 @@
 			ng-change="searchUser(searchTerm)"
 			ng-model="searchTerm"/>
 
-			<div id="search-overlay">
+			<div id="search-overlay" class="thumbnail" data-t="1">
 				<div id="searchResultsUser" ng-repeat="user in searchResults">
 					<div id="userLine" ng-class="{mouseHover: hover}" ng-mouseenter="hover = true"
-    ng-mouseleave="hover = false">
+			ng-mouseleave="hover = false">
 						<div ng-if="user.profileImageData != null">
 						<img ng-src="{{user.profileImageData}}" alt="">
 						</div>

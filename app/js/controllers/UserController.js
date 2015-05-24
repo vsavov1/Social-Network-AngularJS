@@ -84,8 +84,9 @@ app.controller('UserController',
         $scope.searchUser = function (searchUser) {
             userService.searchUser(searchUser,
                 function success(data) {
-                    $("#search-overlay").show();
                     $scope.searchResults = data;
+                    $("#search-overlay").show();
+                    $("#search-overlay").attr("data-t",0);
                     console.log(data);
                 }, function error (err) {
                     notifyService.showError("Search failed", err);
