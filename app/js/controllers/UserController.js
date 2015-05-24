@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('UserController',
-    function ($scope, $rootScope, $location, userService, notifyService) {
+    function ($scope, $rootScope, $location, userService, notifyService, $routeParams) {
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userFullName = userService.getUserFullName();
         $scope.profileImageData = userService.getProfilePicture();
@@ -87,7 +87,17 @@ app.controller('UserController',
                     $scope.searchResults = data;
                     $("#search-overlay").show();
                     $("#search-overlay").attr("data-t",0);
+                }, function error (err) {
+                    notifyService.showError("Search failed", err);
+                }
+            );
+        }
+
+        $scope.getUserWall = function () {
+            userService.getUserWall($routeParams.id,
+                function success(data) {
                     console.log(data);
+                    $scope.userWallData = data;
                 }, function error (err) {
                     notifyService.showError("Search failed", err);
                 }

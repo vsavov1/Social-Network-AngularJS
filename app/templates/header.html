@@ -1,5 +1,13 @@
 <header ng-controller="MainController">
 	<div id="headerContainer" ng-controller="UserController">
+		<a href="#/">
+			<div id="logo">
+			</div>
+			<p id="logoTitle">SoftBook</p>
+		</a>
+		
+		<div ng-if="isLoggedIn">
+			
 		<div id="userButtoms">
 			<a id="editProfile" href="#/profile" ng-click="editProfile()" ></a>
 			<a id="logout" href="#/logout" ng-click="logout()" ></a>
@@ -15,7 +23,7 @@
 
 			<div id="search-overlay" class="thumbnail" data-t="1">
 				<div id="searchResultsUser" ng-repeat="user in searchResults">
-					<div id="userLine" ng-class="{mouseHover: hover}" ng-mouseenter="hover = true"
+					<a href="#/users/{{user.username}}"><div id="userLine" ng-class="{mouseHover: hover}" ng-mouseenter="hover = true"
 			ng-mouseleave="hover = false">
 						<div ng-if="user.profileImageData != null">
 						<img ng-src="{{user.profileImageData}}" alt="">
@@ -24,9 +32,11 @@
 							<img src="img/friendRequest.png" alt="">
 						</div>
 						<p>{{user.name}}</p>
-					</div>
+					</div></div>
 				</div>
 			</div>
 		</div>
+		</div>	
 	</div>
 </header>    
+<!-- href="#/users/{{user.username}}" -->

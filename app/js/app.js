@@ -14,12 +14,17 @@ app.config(function ($routeProvider) {
    $routeProvider.when('/profile', {
        templateUrl: 'templates/editProfile.html',
        controller: 'ProfileController'
-   });
+    });
 
     $routeProvider.when('/profile/password', {
        templateUrl: 'templates/changePassword.html',
        controller: 'ProfileController'
-   });
+    });
+
+    $routeProvider.when('/users/:id', {
+       templateUrl: 'templates/userWall.html',
+       controller: 'UserController'
+    });
 
     $routeProvider.otherwise({
         redirectTo: '/' 
