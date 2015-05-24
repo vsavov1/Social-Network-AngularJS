@@ -235,7 +235,7 @@ header {
   width: 200px;
   height: auto;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.9;
   border-left: 1px solid #e3e4e8;
   border-bottom: 1px solid #e3e4e8;
   border-right: 1px solid #e3e4e8;
@@ -315,11 +315,84 @@ header {
   float: left;
   margin-top: 10px;
 }
-#logoTitle {
+#logoTitle, #postsTitle {
   font-size: 20px;
   color:black;
   float: left;
   margin-top: 30px;
   font-weight: bold;
   margin-left: 10px;
+}
+
+#post {
+  width: 990px;
+  height: auto;
+  margin: 10px;
+  border-radius: 2px;
+  border: 1px solid #e2e2e2;
+  float: left;
+  background-color: #fffbda;
+
+}
+
+#postAuthor, #postContent {
+  margin: 5px;
+  float: left;
+}
+#postContent  {
+  width: 700px;
+  min-height: 50px;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  padding: 3px;
+}
+#postDate {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+#comments{
+  width: 990px;
+  min-height:50px;
+  height: auto;
+  margin-top: 80px;
+}
+#comment {
+  width: 900px;
+  min-height: 80px;
+  height: auto;
+  margin-left: 70px;
+  border: 1px solid #e2e2e2;
+  margin-bottom: 5px;
+  background-color: #fff;
+}
+.commentProfileImage {
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  float: left;
+}
+.commentUserName {
+  margin-top: 7px;
+  margin-left: 5px;
+}
+#commentAuthor {
+  float: left;
+}
+#commentDate {
+  width: 130px;
+  height:15px;
+  float:left;
+  margin-top: 5px;
+}
+#commentLike {
+  float:right;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+#commentContent {
+  width: 610px;
+  height: auto;
+  float: left;
+  margin-left: 5px;
 }
