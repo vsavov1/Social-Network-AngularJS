@@ -69,9 +69,10 @@ app.controller('ProfileController',
             profileService.sendFriendRequest(username,
                 function success() {
                     notifyService.showInfo("Friend request successfully sent");
-                    // setTimeout(function(){
-                    //     window.location.reload();
-                    // }, 500);
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
+                    
                 },
                 function error(err) {
                     notifyService.showError("Friend request failed", err);
@@ -87,17 +88,12 @@ app.controller('ProfileController',
                     $scope.pendingRequest = data
                     $("#frienadRequestsOverlay").show();
                     $("#frienadRequestsOverlay").attr("data-t",0);
-                    // notifyService.showInfo("Friend request successfully sent");
-                    // setTimeout(function(){
-                    //     window.location.reload();
-                    // }, 500);
                 },
                 function error(err) {
                     notifyService.showError("Friend request failed", err);
                 }
             );
         };
-
 
         $scope.acceptFriendRequest = function(id) {
             profileService.acceptFriendRequest(id,
