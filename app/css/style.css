@@ -157,6 +157,7 @@ header {
   background-color: #f6efd5;
   left: 0px;
   position: fixed;
+  z-index: 1;
 }
 #headerContainer {
   width: 1000px;
@@ -428,18 +429,48 @@ header {
   border-left: 1px solid #e3e4e8;
   border-bottom: 1px solid #e3e4e8;
   border-right: 1px solid #e3e4e8;
-  margin-top: 32px;
+  margin-top: 33px;
 }
 #requestLine{
-  height: auto;
+  height: 57px;
+  width: 200px;
+  margin-bottom: 5px;
 }
-#requestLine p,#requestLine img {
+#requestLine img {
+  margin: 5px;
   float: left;
 }
 #requestLine p {
+  float: left;
+  width: 100px;
+  margin-top: 5px;
+}
+#accept, #cancel{
+  width: 50px;
+  height: 13px;
+  background-color: #f96c65;
+  border-radius: 5px;
+  padding: 4px 7px 5px 7px;
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  margin-top: 12px;
+}
+#accept{
+  float: left;
+}
+
+#cancel{
+  float: right;
+  width: 41px;
+  margin-right: 4px;
+  background-color: gray;
+}
+
+/*#requestLine p {
   margin-top: 14px;
   margin-left: 5px;
-}
+}*/
 #hasPendingRequest, #makePostButton, #myFriend {
   width: 138px;
   height: 19px;
@@ -477,4 +508,14 @@ header {
 #Norequest {
   margin: 7px;
   font-size: 16px;
+}
+
+#userFriendsPreview {
+  float: left;
+  height: 143px;
+  width: 1000px;
+}
+#userFriendsPreviewUser {
+  float: left;
+  margin: 10px;
 }

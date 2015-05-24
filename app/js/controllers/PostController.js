@@ -21,7 +21,10 @@ app.controller('PostController',
         $scope.makeNewPost = function(makePostContent) {
             postService.makeNewPost(makePostContent,$routeParams.id,
              function success(data) {
-                    console.log(data);
+                    notifyService.showInfo("Post successfully");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 700);
                 },
                 function error(err) {
                     notifyService.showError("Post failed", err);

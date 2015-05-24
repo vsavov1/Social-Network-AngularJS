@@ -30,8 +30,6 @@ app.factory('postService',
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
-                console.log(username);
-                console.log(userService.Authorization());
 
                 $http(request).success(function(data) {
                     success(data);

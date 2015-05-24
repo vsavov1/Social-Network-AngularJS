@@ -9,9 +9,11 @@ app.factory('userService',
                     url: baseServiceUrl + '/api/users/login',
                     data: userData
                 };
-                
+                var _this = this;
+
                 $http(request).success(function(data) {
                     sessionStorage['currentUser'] = JSON.stringify(data);
+                    _this.saveDataAboutMe(data);
                     success(data);
                 }).error(error);
             },
@@ -22,7 +24,11 @@ app.factory('userService',
                     url: baseServiceUrl + '/api/users/register',
                     data: userData
                 };
+                var _this = this;
+
                 $http(request).success(function(data) {
+                    _this.saveDataAboutMe(userData)   
+
                     sessionStorage['currentUser'] = JSON.stringify(data);
                     success(data);
                 }).error(error);
@@ -36,9 +42,10 @@ app.factory('userService',
                         'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
+                var _this = this;
 
                 $http(request).success(function(data) {
-                    delete sessionStorage['currentUser'];
+                    _this.deleteDataAboutMe();
                     success(data);
                 }).error(error);
             },
@@ -55,6 +62,15 @@ app.factory('userService',
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
+            },
+
+            deleteDataAboutMe : function  () {
+                delete sessionStorage['currentUser'];
+                delete sessionStorage['name'];
+                delete sessionStorage['email'];
+                delete sessionStorage['profileImageData'];
+                delete sessionStorage['coverImageData'];
+                delete sessionStorage['gender'];
             },
 
             saveDataAboutMe : function  (data) {
@@ -131,7 +147,7 @@ app.factory('userService',
                     method: 'GET',
                     url: baseServiceUrl + '/api/users/' + username,
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
 
@@ -141,12 +157,11 @@ app.factory('userService',
             },
 
             getUserWallFriendsPreveiw : function(username, success, error) {
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + "321321" + "/friends/preview",
+                    url: baseServiceUrl + '/api/users/' + username + "/friends/preview",
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
 

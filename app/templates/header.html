@@ -16,9 +16,9 @@
 						<div id="requestLine" ng-repeat="request in pendingRequest">
 							<img width="50px" height="50px" src="{{request.user.profileImageData}}" alt="">
 							<p>{{request.user.name}}</p>
-							<a ng-click="acceptFriendRequest(request.id)">Accept</a>
+							<a id="accept" ng-click="acceptFriendRequest(request.id)">Accept</a>
 							<br>
-							<a ng-click="cancelFriendRequest(request.id)">Cancel</a>
+							<a id="cancel" ng-click="cancelFriendRequest(request.id)">Cancel</a>
 						</div>
 						<div ng-if="pendingRequest.length == 0">
 							<p id="Norequest">No request</p>

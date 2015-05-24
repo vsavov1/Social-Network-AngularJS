@@ -26,6 +26,19 @@
 		<a id="myFriend">Friend</a>
 	</div>
 </div>
+<div ng-controller="UserController" ng-init="getUserWallFriendsPreveiw()" ng-if="userWallData.isFriend">
+	<div id="userFriendsPreview" >
+		<p id="postsTitle">Friends: </p>
+		<div id="userFriendsPreviewUser" ng-repeat="user in userWallFriendsPreveiw.friends">
+			<img src="{{user.profileImageData}}" alt="">
+			<p>{{user.name}}</p>
+		</div>
+		<div ng-if="userWallFriendsPreveiw.friends.length == 0">
+			<p>No friends</p>
+		</div>	
+	</div>
+</div>
+
 
 <div id="makePost" ng-if="userWallData.isFriend" ng-controller="PostController">
 	<textarea  id="makePostContent" placeholder=" Make post" ng-model="makePostContent"></textarea>

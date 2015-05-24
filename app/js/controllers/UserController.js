@@ -50,16 +50,14 @@ app.controller('UserController',
                 notifyService.showWarning("Please choose gender.");
                 return;
             }
+            var _this = this;
 
             userService.register(userData,
-                function success() {
+                function success(data) {
                     notifyService.showInfo("User registered successfully");
-                        userService.getDataAboutMe(function success(dataAboutme) {
-                            userService.saveDataAboutMe(dataAboutme);
-                        })
-                      setTimeout(function(){
+                    setTimeout(function(){
                         window.location.reload();
-                    }, 1000);
+                    }, 500);
                     $location.path("/");
                 },
                 function error(err) {
@@ -105,16 +103,16 @@ app.controller('UserController',
             );
         }
 
-        // $scope.getUserWallFriendsPreveiw = function () {
-        //     userService.getUserWallFriendsPreveiw($routeParams.id,
-        //         function success(data) {
-        //             console.log(data);
-        //             $scope.userWallFriendsPreveiw = data;
-        //         }, function error (err) {
-        //             notifyService.showError("friend preview failed", err);
-        //         }
-        //     );
-        // }
+        $scope.getUserWallFriendsPreveiw = function () {
+            userService.getUserWallFriendsPreveiw($routeParams.id,
+                function success(data) {
+                    console.log(data);
+                    $scope.userWallFriendsPreveiw = data;
+                }, function error (err) {
+                    notifyService.showError("friend preview failed", err);
+                }
+            );
+        }
         
     }
 );
