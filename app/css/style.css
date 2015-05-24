@@ -440,7 +440,7 @@ header {
   margin-top: 14px;
   margin-left: 5px;
 }
-#hasPendingRequest {
+#hasPendingRequest, #makePostButton, #myFriend {
   width: 138px;
   height: 19px;
   background-color: #f96c65;
@@ -453,4 +453,28 @@ header {
   margin-right: 10px;
   float: right;
   position: relative;
+}
+#myFriend {
+  width: 43px;
+}
+#makePost {
+  width: 1000px;
+  height: auto;
+  margin-top: 20px;
+  float: left;
+}
+#makePostContent {
+  max-width: 1000px;
+  min-width: 1000px;
+  height: auto;
+  min-height: 150px
+}
+#makePostButton {
+  cursor: pointer;
+  width: 32px;
+
+}
+#Norequest {
+  margin: 7px;
+  font-size: 16px;
 }

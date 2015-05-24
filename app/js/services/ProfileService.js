@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('profileService',
-    function ($http, baseServiceUrl) {
+    function ($http, baseServiceUrl, userService) {
         return {
             changePassword : function(userData, success, error) {
                 var request = {
@@ -9,7 +9,7 @@ app.factory('profileService',
                     url: baseServiceUrl + '/api/me/ChangePassword',
                     data: userData,
                     headers: {
-                        'Authorization' : 'Bearer ' + this.Authorization()
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
@@ -24,7 +24,7 @@ app.factory('profileService',
                     method: 'POST',
                     url: baseServiceUrl + '/api/me/requests/' + username,
                     headers: {
-                        'Authorization' : 'Bearer ' + this.Authorization()
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
@@ -34,12 +34,11 @@ app.factory('profileService',
             },
 
             cancelFriendRequest : function(id, success, error) {
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'PUT',
                     url: baseServiceUrl + '/api/me/requests/' + id + "?status=rejected",
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
@@ -50,12 +49,11 @@ app.factory('profileService',
 
 
             acceptFriendRequest : function(id, success, error) {
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'PUT',
                     url: baseServiceUrl + '/api/me/requests/' + id + "?status=approved",
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
@@ -70,7 +68,7 @@ app.factory('profileService',
                     method: 'GET',
                     url: baseServiceUrl + '/api/me/requests/',
                     headers: {
-                        'Authorization' : 'Bearer ' + this.Authorization()
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
@@ -85,23 +83,14 @@ app.factory('profileService',
                     url: baseServiceUrl + '/api/me',
                     data: userData,
                     headers: {
-                        'Authorization' : 'Bearer ' + this.Authorization()
+                        'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
 
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
-            },
-
-            Authorization : function () {
-                var userObject = sessionStorage['currentUser'];
-                if (userObject) {
-                    var jsonObject = JSON.parse(sessionStorage['currentUser'])
-                    return jsonObject.access_token;
-                }
             }
-
         }
     }
 );

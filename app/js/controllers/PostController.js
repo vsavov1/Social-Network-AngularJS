@@ -18,5 +18,16 @@ app.controller('PostController',
             );
         };
 
+        $scope.makeNewPost = function(makePostContent) {
+            postService.makeNewPost(makePostContent,
+             function success(data) {
+                    console.log(data);
+                },
+                function error(err) {
+                    notifyService.showError("Login failed", err);
+                }
+            );
+        };
+
     }
 );

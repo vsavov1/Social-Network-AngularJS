@@ -29,12 +29,11 @@ app.factory('userService',
             },
 
             logout: function(success, error) {
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/api/users/logout',
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
 
@@ -45,12 +44,11 @@ app.factory('userService',
             },
 
             getDataAboutMe :  function (success, error) {
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'get',
                     url: baseServiceUrl + '/api/me',
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
 
@@ -95,10 +93,11 @@ app.factory('userService',
                 }
             },
 
-            getCurrentUser : function(type) {
+            Authorization : function () {
                 var userObject = sessionStorage['currentUser'];
                 if (userObject) {
-                    return JSON.parse(sessionStorage['currentUser']).type;
+                    var jsonObject = JSON.parse(sessionStorage['currentUser'])
+                    return jsonObject.access_token;
                 }
             },
 
@@ -111,12 +110,11 @@ app.factory('userService',
                     return;
                 }
 
-                var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'GET',
                     url: baseServiceUrl + '/api/users/search?searchTerm=' + searchTerm,
                     headers: {
-                        'Authorization' : 'Bearer ' + userObject.access_token
+                        'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
 

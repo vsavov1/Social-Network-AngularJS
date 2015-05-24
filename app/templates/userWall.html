@@ -23,12 +23,15 @@
 	</div>
 
 	<div  ng-controller="ProfileController" ng-if="userWallData.isFriend == true">
-		<a id="hasPendingRequest">Friend</a>
+		<a id="myFriend">Friend</a>
 	</div>
-
-
 </div>
-<!-- <div id="userWallFriendsPreveiw" ng-init="getUserWallFriendsPreveiw()"> -->
+
+<div id="makePost" ng-if="userWallData.isFriend">
+	<textarea  id="makePostContent" placeholder=" Make post" ng-model="makePostContent"></textarea>
+	<a id="makePostButton" ng-click="makeNewPost(makePostContent)">Post</a>
+</div>
+
 	
 </div>
 <div id="posts" ng-controller="PostController" ng-init="getWallPosts()">

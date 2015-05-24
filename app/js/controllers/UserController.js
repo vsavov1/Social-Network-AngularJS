@@ -21,7 +21,7 @@ app.controller('UserController',
                     notifyService.showInfo("Login successful");
                     setTimeout(function(){
                         window.location.reload();
-                    },900);
+                    },1000);
                     $location.path("/");
                 },
                 function error(err) {
@@ -59,7 +59,7 @@ app.controller('UserController',
                         })
                       setTimeout(function(){
                         window.location.reload();
-                    }, 500);
+                    }, 1000);
                     $location.path("/");
                 },
                 function error(err) {

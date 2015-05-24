@@ -20,6 +20,9 @@
 							<br>
 							<a ng-click="cancelFriendRequest(request.id)">Cancel</a>
 						</div>
+						<div ng-if="pendingRequest.length == 0">
+							<p id="Norequest">No request</p>
+						</div>
 					</div>
 					
 				</div>
