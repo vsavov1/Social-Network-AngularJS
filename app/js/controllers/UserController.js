@@ -71,10 +71,24 @@ app.controller('UserController',
             userService.logout(
                 function success() {
                     notifyService.showInfo("Logout successfully");
-                    window.location.reload();
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
                     $location.path("/");
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
+                }
+            );
+        }
+
+        $scope.searchUser = function (searchUser) {
+            userService.searchUser(searchUser,
+                function success(data) {
+                    $("#search-overlay").show();
+                    $scope.searchResults = data;
+                    console.log(data);
+                }, function error (err) {
+                    notifyService.showError("Search failed", err);
                 }
             );
         }

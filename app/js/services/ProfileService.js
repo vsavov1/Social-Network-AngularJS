@@ -3,7 +3,22 @@
 app.factory('profileService',
     function ($http, baseServiceUrl) {
         return {
-            editProfile: function(userData, success, error) {
+            changePassword : function(userData, success, error) {
+                var request = {
+                    method: 'PUT',
+                    url: baseServiceUrl + '/api/me/ChangePassword',
+                    data: userData,
+                    headers: {
+                        'Authorization' : 'Bearer ' + this.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            editProfile : function(userData, success, error) {
                 var request = {
                     method: 'PUT',
                     url: baseServiceUrl + '/api/me',
@@ -12,12 +27,12 @@ app.factory('profileService',
                         'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
-                console.log(userData);
+
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
             },
-            
+
             Authorization : function () {
                 var userObject = sessionStorage['currentUser'];
                 if (userObject) {

@@ -105,6 +105,21 @@ app.factory('userService',
             isLoggedIn : function() {
                 return sessionStorage['currentUser'] != undefined;
             },
+
+            searchUser : function(searchTerm, success, error) {
+                var userObject = JSON.parse(sessionStorage['currentUser']);
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/search?searchTerm=' + searchTerm,
+                    headers: {
+                        'Authorization' : 'Bearer ' + userObject.access_token
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            }
         }
     }
 );

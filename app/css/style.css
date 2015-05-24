@@ -70,11 +70,12 @@ body {
   margin: 49px;
   text-align: center;
 }
-#loginBox p, #registerBox p, #editProfileBox p {
+#loginBox p, #registerBox p, #editProfileBox p, #changePasswordBox p {
   font-size: 24px;
   margin: 7px;
 }
-#loginBox input, #registerBox input, #editProfileBox input{
+#loginBox input, #registerBox input, #editProfileBox input,
+#changePasswordBox input{
   display: block;
   height: 25px;
   margin-left: 115px;
@@ -87,14 +88,14 @@ body {
 }
 #loginBox input[type='text'], #loginBox input[type='password'],
 #registerBox input[type='text'], #registerBox input[type='password'],
-#editProfileBox input[type='text'], #editProfileBox input[type='password']  {
+#editProfileBox input[type='text'], #changePasswordBox input[type='password'] , 
+ {
   padding-left: 5px;
   padding-bottom: 5px;
   font-family: Segoe UI Light;
   font-size: 17px;
 }
-
-#loginBox a, #registerBox a, #editProfileBox a {
+#loginBox a, #registerBox a, #editProfileBox a, #changePasswordBox a {
   width: 138px;
   height: 19px;
   margin: auto;
@@ -184,7 +185,6 @@ header {
   float: right;
   margin-top: 17px;
 }
-
 #currentUser p, #currentUser img{ 
   float: left;
 }
@@ -193,7 +193,7 @@ header {
   margin-left: 5px;
   font-size: 16px;
 }
-#editProfileBox {
+#editProfileBox, #changePasswordBox {
   width: 400px;
   height: auto;
   float: left;
@@ -205,8 +205,7 @@ header {
 #cps {
   height: 15px;
 }
-
-#editProfileBox a {
+#editProfileBox a, #changePasswordBox a {
   width: 150px;
   text-decoration: none;
 }

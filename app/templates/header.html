@@ -1,12 +1,32 @@
 <header ng-controller="MainController">
-	<div id="headerContainer">
+	<div id="headerContainer" ng-controller="UserController">
 		<div id="userButtoms">
-			<a id="editProfile" href="#/profile" ng-click="editProfile()" ng-controller="UserController"></a>
-			<a id="logout" href="#/logout" ng-click="logout()" ng-controller="UserController"></a>
+			<a id="editProfile" href="#/profile" ng-click="editProfile()" ></a>
+			<a id="logout" href="#/logout" ng-click="logout()" ></a>
 		</div>
-		<div id="currentUser" ng-controller="UserController">
+		<div id="currentUser" >
 			<img ng-src="{{profileImageData}}" alt="" height="50px" width="50px">
 			<p>{{userFullName}}</p>
+		</div>
+		<div id="searchBox">
+			<input type="text" id="searchBar" placeholder="Search user"
+			ng-change="searchUser(searchTerm)"
+			ng-model="searchTerm"/>
+
+			<div id="search-overlay">
+				<div id="searchResultsUser" ng-repeat="user in searchResults">
+					<div id="userLine" ng-class="{mouseHover: hover}" ng-mouseenter="hover = true"
+    ng-mouseleave="hover = false">
+						<div ng-if="user.profileImageData != null">
+						<img ng-src="{{user.profileImageData}}" alt="">
+						</div>
+						<div ng-if="user.profileImageData == null">
+							<img src="img/friendRequest.png" alt="">
+						</div>
+						<p>{{user.name}}</p>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </header>    

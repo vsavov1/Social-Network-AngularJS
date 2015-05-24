@@ -12,6 +12,21 @@ app.controller('ProfileController',
 
         }
 
+        $scope.changePassword = function(userData) {
+            profileService.changePassword(userData,
+                function success() {
+                    notifyService.showInfo("Password successfully changed");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
+                },
+                function error(err) {
+                    notifyService.showError("Password change failed", err);
+                }
+            );
+        };
+
+
         $scope.editProfile = function(userData) {
             profileService.editProfile(userData,
                 function success() {
@@ -48,7 +63,5 @@ app.controller('ProfileController',
                  reader.readAsDataURL(photofile);
              });
         };
-
-       
     }
 );
