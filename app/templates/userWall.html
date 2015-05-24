@@ -27,7 +27,7 @@
 	</div>
 </div>
 
-<div id="makePost" ng-if="userWallData.isFriend">
+<div id="makePost" ng-if="userWallData.isFriend" ng-controller="PostController">
 	<textarea  id="makePostContent" placeholder=" Make post" ng-model="makePostContent"></textarea>
 	<a id="makePostButton" ng-click="makeNewPost(makePostContent)">Post</a>
 </div>

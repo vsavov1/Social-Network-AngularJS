@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('PostController',
-    function ($scope, $rootScope, $location, postService,$filter, userService, notifyService, $routeParams) {
+    function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams) {
         $scope.$watch(posts.date, function (val) {
             $scope.result = $filter('date')(new Date(), val);
         }, true);
@@ -19,12 +19,12 @@ app.controller('PostController',
         };
 
         $scope.makeNewPost = function(makePostContent) {
-            postService.makeNewPost(makePostContent,
+            postService.makeNewPost(makePostContent,$routeParams.id,
              function success(data) {
                     console.log(data);
                 },
                 function error(err) {
-                    notifyService.showError("Login failed", err);
+                    notifyService.showError("Post failed", err);
                 }
             );
         };

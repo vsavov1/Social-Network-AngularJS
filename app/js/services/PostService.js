@@ -17,15 +17,21 @@ app.factory('postService',
                 }).error(error);
             },
 
-            makeNewPost : function(content, success, error) {
+            makeNewPost : function(content, username, success, error) {
+
                 var request = {
-                    method: 'GET',
+                    method: 'POST',
                     url: baseServiceUrl + '/api/posts',
-                    postContent : content,
+                    data: {
+                        postContent : content,
+                        username : username
+                    },
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }
                 };
+                console.log(username);
+                console.log(userService.Authorization());
 
                 $http(request).success(function(data) {
                     success(data);
