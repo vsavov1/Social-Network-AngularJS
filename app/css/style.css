@@ -209,3 +209,55 @@ header {
   width: 150px;
   text-decoration: none;
 }
+#searchBox {
+  float: right;
+}
+#searchBar {
+  display: block;
+  height: 25px;
+  margin-right: 200px;
+  margin-top: 32px;
+  border: 1px solid #e3e4e8 ;
+  width: 200px;
+}
+
+#searchBar input[type='text']{
+  padding-left: 5px;
+  padding-bottom: 5px;
+  font-family: Segoe UI Light;
+  font-size: 17px;
+}
+
+#search-overlay{
+  display: none;
+  width: 200px;
+  height: auto;
+  background-color: white;
+  margin-top: -15px;
+  opacity: 0.8;
+  border-left: 1px solid #e3e4e8;
+  border-bottom: 1px solid #e3e4e8;
+  border-right: 1px solid #e3e4e8;
+
+}
+#searchResultsUser img{
+  max-width: 30px;
+  max-height: 30px;
+  margin-right: 10px;
+  margin-left: 5px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  float: left;
+}
+#searchResultsUser p{
+ margin-top: 15px;
+ margin-left: 10px;
+ padding-top: 5px;
+}
+#userLine {
+  height: 38px;
+}
+.mouseHover {
+  background-color: #f96c65;
+  cursor: pointer;
+}
