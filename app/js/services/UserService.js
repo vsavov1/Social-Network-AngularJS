@@ -39,8 +39,8 @@ app.factory('userService',
                 };
 
                 $http(request).success(function(data) {
-                    success(data);
                     delete sessionStorage['currentUser'];
+                    success(data);
                 }).error(error);
             },
 
@@ -107,6 +107,10 @@ app.factory('userService',
             },
 
             searchUser : function(searchTerm, success, error) {
+                if (searchTerm.length <= 0) {
+                    return;
+                }
+
                 var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'GET',

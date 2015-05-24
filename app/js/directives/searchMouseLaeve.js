@@ -6,9 +6,12 @@ app.directive('thumbnail', function($document,$window) {
            if (element !== e.target 
                 && !element[0].contains(e.target) 
                 && element[0].attributes['data-t'].value == 0) {
-                element.remove();
+                $(element).attr("data-t",1);
+                $(element).hide();
+                scope.searchTerm = "";
+                $("#searchBar").value = "";
             }else {
-              console.log("in");
+                console.log("in");
             }
        });
     }
