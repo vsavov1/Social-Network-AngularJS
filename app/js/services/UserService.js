@@ -125,11 +125,28 @@ app.factory('userService',
                 }).error(error);
             },
 
+            
+
             getUserWall : function(username, success, error) {
                 var userObject = JSON.parse(sessionStorage['currentUser']);
                 var request = {
                     method: 'GET',
                     url: baseServiceUrl + '/api/users/' + username,
+                    headers: {
+                        'Authorization' : 'Bearer ' + userObject.access_token
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            getUserWallFriendsPreveiw : function(username, success, error) {
+                var userObject = JSON.parse(sessionStorage['currentUser']);
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + "321321" + "/friends/preview",
                     headers: {
                         'Authorization' : 'Bearer ' + userObject.access_token
                     }

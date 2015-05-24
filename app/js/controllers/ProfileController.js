@@ -48,6 +48,7 @@ app.controller('ProfileController',
                  var reader = new FileReader();
                  reader.onload = function(e) {
                     $scope.userData.profileImageData = reader.result;
+                    console.log($scope.userData.profileImageData);
                  };
                  reader.readAsDataURL(photofile);
              });
@@ -62,6 +63,62 @@ app.controller('ProfileController',
                  };
                  reader.readAsDataURL(photofile);
              });
+        };
+
+        $scope.sendFriendRequest = function(username) {
+            profileService.sendFriendRequest(username,
+                function success() {
+                    notifyService.showInfo("Friend request successfully sent");
+                    // setTimeout(function(){
+                    //     window.location.reload();
+                    // }, 500);
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
+
+
+        $scope.getFriendRequests = function() {
+            profileService.getFriendRequests(
+                function success(data) {
+                    console.log(data);
+                    $scope.pendingRequest = data
+                    $("#frienadRequestsOverlay").show();
+                    $("#frienadRequestsOverlay").attr("data-t",0);
+                    // notifyService.showInfo("Friend request successfully sent");
+                    // setTimeout(function(){
+                    //     window.location.reload();
+                    // }, 500);
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
+
+
+        $scope.acceptFriendRequest = function(id) {
+            profileService.acceptFriendRequest(id,
+                function success(data) {
+                    notifyService.showInfo("Friend request successfully accepted");
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
+
+        $scope.cancelFriendRequest = function(id) {
+            profileService.cancelFriendRequest(id,
+                function success(data) {
+                    notifyService.showInfo("Friend request successfully canceled");
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
         };
     }
 );

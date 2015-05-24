@@ -9,6 +9,21 @@
 		<div ng-if="isLoggedIn">
 			
 		<div id="userButtoms">
+			
+			<div ng-controller="ProfileController">
+				<div id="getFriendRequestIcon" ng-click="getFriendRequests()">
+					<div id="frienadRequestsOverlay" class="thumbnail" data-t="1">
+						<div id="requestLine" ng-repeat="request in pendingRequest">
+							<img width="50px" height="50px" src="{{request.user.profileImageData}}" alt="">
+							<p>{{request.user.name}}</p>
+							<a ng-click="acceptFriendRequest(request.id)">Accept</a>
+							<br>
+							<a ng-click="cancelFriendRequest(request.id)">Cancel</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
 			<a id="editProfile" href="#/profile" ng-click="editProfile()" ></a>
 			<a id="logout" href="#/logout" ng-click="logout()" ></a>
 		</div>
@@ -17,7 +32,7 @@
 			<p>{{userFullName}}</p>
 		</div>
 		<div id="searchBox">
-			<input type="text" id="searchBar" placeholder="Search user"
+			<input type="text" id="searchBar" placeholder=" Search user"
 			ng-change="searchUser(searchTerm)"
 			ng-model="searchTerm"/>
 

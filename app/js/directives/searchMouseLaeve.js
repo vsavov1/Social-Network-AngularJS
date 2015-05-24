@@ -10,8 +10,6 @@ app.directive('thumbnail', function($document,$window) {
                 $(element).hide();
                 scope.searchTerm = "";
                 $("#searchBar").value = "";
-            }else {
-                console.log("in");
             }
        });
     }

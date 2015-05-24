@@ -19,16 +19,12 @@
         </div>
     </div>
     <p>Profile picture</p>
-    <input 
-    onchange="angular.element(this).scope().profilePicutreChanged(this)"
-    type="file" accept="image/*" />
+    <input onchange="angular.element(this).scope().profilePicutreChanged(this)" type="file" accept="image/*" />
     <img ng-src="{{userData.profileImageData}}" alt="" width="100px" height="100px">
     <div id="cps"></div>
     
     <p>Cover picture</p>
-    <input 
-    onchange="angular.element(this).scope().coverPicutreChanged(this)"
-    type="file" accept="image/*" />
+    <input onchange="angular.element(this).scope().coverPicutreChanged(this)" type="file" accept="image/*" />
     <img ng-src="{{userData.coverImageData}}" alt="" width="100px" height="100px">
     <div id="cps"></div>
     

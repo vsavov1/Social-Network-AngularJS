@@ -14,13 +14,14 @@ app.controller('UserController',
                     //     return;
                     // }
                     // remove comment
+
                     userService.getDataAboutMe(function success(dataAboutme) {
                         userService.saveDataAboutMe(dataAboutme);
                     })
                     notifyService.showInfo("Login successful");
                     setTimeout(function(){
                         window.location.reload();
-                    }, 500);
+                    },900);
                     $location.path("/");
                 },
                 function error(err) {
@@ -103,5 +104,17 @@ app.controller('UserController',
                 }
             );
         }
+
+        // $scope.getUserWallFriendsPreveiw = function () {
+        //     userService.getUserWallFriendsPreveiw($routeParams.id,
+        //         function success(data) {
+        //             console.log(data);
+        //             $scope.userWallFriendsPreveiw = data;
+        //         }, function error (err) {
+        //             notifyService.showError("friend preview failed", err);
+        //         }
+        //     );
+        // }
+        
     }
 );

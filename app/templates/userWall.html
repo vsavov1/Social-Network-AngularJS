@@ -15,7 +15,13 @@
 		<img id="userWallProfileImageData"  src="img/profileImageNotFount.png" alt="">
 	</div>
 	<p id="userWallFullName">{{userWallData.name}}</p>
+	<div ng-if="userWallData.isFriend == false" ng-controller="ProfileController">
+		<a id="sendFriendRequest" ng-click="sendFriendRequest(userWallData.username)">Send friend request</a>
+	</div>
 
+</div>
+<!-- <div id="userWallFriendsPreveiw" ng-init="getUserWallFriendsPreveiw()"> -->
+	
 </div>
 <div id="posts" ng-controller="PostController" ng-init="getWallPosts()">
 <p id="postsTitle">Posts: </p>

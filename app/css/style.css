@@ -167,13 +167,18 @@ header {
     float: right;
     height: 32px;
     margin-top: 24px;
+    width: 150px;
 }
-#logout, #editProfile {
+#logout, #editProfile, #getFriendRequestIcon{
     display: block;
     width: 32px;
     height: 32px;
     float: left;
     margin-left: 15px;
+    cursor: pointer;
+}
+#getFriendRequestIcon {
+  background-image: url("../img/friendRequest.png");
 }
 #logout {
     background: url("../img/logout.png") no-repeat;
@@ -239,7 +244,6 @@ header {
   border-left: 1px solid #e3e4e8;
   border-bottom: 1px solid #e3e4e8;
   border-right: 1px solid #e3e4e8;
-
 }
 #searchResultsUser img{
   max-width: 30px;
@@ -394,5 +398,45 @@ header {
   width: 610px;
   height: auto;
   float: left;
+  margin-left: 5px;
+}
+#sendFriendRequest {
+  width: 138px;
+  height: 19px;
+  margin: auto;
+  background-color: #f96c65;
+  border-radius: 5px;
+  padding: 8px 15px 10px 15px;
+  /*display: block;*/
+  color: #fff;
+  font-size: 16px;
+  font-family: Segoe UI Light;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: -50px;
+  margin-right: 10px;
+  float: right;
+}
+
+#frienadRequestsOverlay{
+  display: none;
+  float: left;
+  width: 200px;
+  height: auto;
+  background-color: white;
+  opacity: 0.9;
+  border-left: 1px solid #e3e4e8;
+  border-bottom: 1px solid #e3e4e8;
+  border-right: 1px solid #e3e4e8;
+  margin-top: 32px;
+}
+#requestLine{
+  height: auto;
+}
+#requestLine p,#requestLine img {
+  float: left;
+}
+#requestLine p {
+  margin-top: 14px;
   margin-left: 5px;
 }
