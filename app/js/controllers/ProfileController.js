@@ -143,8 +143,18 @@ app.controller('ProfileController',
             );
         };
 
-        
-
+        $scope.feed = function() {
+            profileService.getFeed(
+                function success(data) {
+                    $scope.feed = data;
+                    console.log(data);
+                    // notifyService.showInfo("Friend request successfully canceled");
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
         
     }
 );

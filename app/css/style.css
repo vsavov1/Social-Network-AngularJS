@@ -549,4 +549,10 @@ header {
 .myFriends {
   margin-top: 93px;
 }
+#feed {
+  margin-top: 93px;
+  width: 740px;
+  float: left;
+  height: auto;
+}
 
