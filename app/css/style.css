@@ -458,6 +458,7 @@ header {
 }
 #accept{
   float: left;
+  width: 37px;
 }
 
 #cancel{
@@ -471,7 +472,7 @@ header {
   margin-top: 14px;
   margin-left: 5px;
 }*/
-#hasPendingRequest, #makePostButton, #myFriend {
+#hasPendingRequest, #makePostButton, #myFriend , #allFriends{
   width: 138px;
   height: 19px;
   background-color: #f96c65;
@@ -484,6 +485,10 @@ header {
   margin-right: 10px;
   float: right;
   position: relative;
+}
+#allFriends {
+  width: 69px;
+  margin-right: 100px;
 }
 #myFriend {
   width: 43px;

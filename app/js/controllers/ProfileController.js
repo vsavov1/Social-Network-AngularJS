@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('ProfileController',
-    function ($scope, $location, userService, profileService, notifyService) {
+    function ($scope, $location, userService, profileService, notifyService, $routeParams) {
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userData = {
             name : userService.getUserFullName(),
@@ -116,5 +116,7 @@ app.controller('ProfileController',
                 }
             );
         };
+
+        
     }
 );

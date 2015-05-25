@@ -42,10 +42,8 @@ app.factory('userService',
                         'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
-                var _this = this;
-
+                this.deleteDataAboutMe();
                 $http(request).success(function(data) {
-                    _this.deleteDataAboutMe();
                     success(data);
                 }).error(error);
             },
@@ -165,6 +163,34 @@ app.factory('userService',
                     }
                 };
 
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            getAllFriends : function(username, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + username + "/friends",
+                    headers: {
+                        'Authorization' : 'Bearer ' + this.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            }, 
+
+            getUserWallFriendsPreveiw : function(username, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + username + "/friends/preview",
+                    headers: {
+                        'Authorization' : 'Bearer ' + this.Authorization()
+                    }
+                };
+                console.log(this.Authorization());
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);

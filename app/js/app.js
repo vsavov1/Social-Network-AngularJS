@@ -26,6 +26,11 @@ app.config(function ($routeProvider) {
        controller: 'UserController'
     });
 
+    $routeProvider.when('/users/:id/friends', {
+       templateUrl: 'templates/friends.html',
+       controller: 'UserController'
+    });
+
     $routeProvider.otherwise({
         redirectTo: '/' 
     });

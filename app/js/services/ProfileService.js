@@ -90,7 +90,9 @@ app.factory('profileService',
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
-            }
+            },
+
+           
         }
     }
 );

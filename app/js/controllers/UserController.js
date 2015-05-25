@@ -70,10 +70,10 @@ app.controller('UserController',
             userService.logout(
                 function success() {
                     notifyService.showInfo("Logout successfully");
+                    $location.path("/");
                     setTimeout(function(){
                         window.location.reload();
                     }, 500);
-                    $location.path("/");
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
                 }
@@ -107,6 +107,28 @@ app.controller('UserController',
             userService.getUserWallFriendsPreveiw($routeParams.id,
                 function success(data) {
                     console.log(data);
+                    $scope.userWallFriendsPreveiw = data;
+                }, function error (err) {
+                    notifyService.showError("friend preview failed", err);
+                }
+            );
+        }
+
+        $scope.getAllFriends = function () {
+            console.log($routeParams.id);
+            userService.getAllFriends($routeParams.id,
+                function success(data) {
+                    $scope.allFriends = data;
+                    console.log(data);
+                }, function error (err) {
+                    notifyService.showError("friend preview failed", err);
+                }
+            );
+        }
+
+        $scope.getUserWallFriendsPreveiw = function () {
+            userService.getUserWallFriendsPreveiw($routeParams.id,
+                function success(data) {
                     $scope.userWallFriendsPreveiw = data;
                 }, function error (err) {
                     notifyService.showError("friend preview failed", err);
