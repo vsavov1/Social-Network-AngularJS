@@ -13,7 +13,7 @@ app.factory('userService',
 
                 $http(request).success(function(data) {
                     sessionStorage['currentUser'] = JSON.stringify(data);
-                    _this.saveDataAboutMe(data);
+                    // _this.saveDataAboutMe(_this.getDataAboutMe());
                     success(data);
                 }).error(error);
             },
@@ -27,7 +27,7 @@ app.factory('userService',
                 var _this = this;
 
                 $http(request).success(function(data) {
-                    _this.saveDataAboutMe(userData)   
+                    // _this.saveDataAboutMe(_this.getDataAboutMe())   
 
                     sessionStorage['currentUser'] = JSON.stringify(data);
                     success(data);
@@ -42,7 +42,7 @@ app.factory('userService',
                         'Authorization' : 'Bearer ' + this.Authorization()
                     }
                 };
-                this.deleteDataAboutMe();
+                // this.deleteDataAboutMe();
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);

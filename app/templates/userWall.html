@@ -1,39 +1,4 @@
-<div id="userWallWrap" ng-init="getUserWall()">
-	<div id="userWallCoverImageWrap" >
-		<div ng-if="userWallData.coverImageData != null">
-			<img id="userWallcoverImageData"   ng-src="{{userWallData.coverImageData}}" alt="">
-		</div>
-
-		<div ng-if="userWallData.coverImageData == null">
-			<img id="userWallcoverImageData"  ng-src="./img/defaultCover.jpg" alt="">
-		</div>
-	</div>
-
-	<div ng-if="userWallData.profileImageData != null">
-		<img id="userWallProfileImageData"   ng-src="{{userWallData.profileImageData}}" alt="">
-	</div>
-
-	<div ng-if="userWallData.profileImageData == null">
-		<img id="userWallProfileImageData"  src="img/profileImageNotFount.png" alt="">
-	</div>
-
-	<p id="userWallFullName">{{userWallData.name}}</p>
-
-	<div ng-controller="ProfileController" ng-if="userWallData.isFriend == false && userWallData.hasPendingRequest == false" >
-		<a id="sendFriendRequest" ng-click="sendFriendRequest(userWallData.username)">Send friend request</a>
-	</div>
-
-	<div ng-controller="ProfileController" ng-if="userWallData.hasPendingRequest == true">
-		<a id="hasPendingRequest">Friend request sent</a>
-	</div>
-
-	<div ng-controller="ProfileController" ng-if="userWallData.isFriend == true">
-		<a id="myFriend">Friend</a>
-		<a href="#/users/{{userWallData.username}}/friends" id="allFriends" >All friends</a>
-	</div>
-		
-		
-</div>
+<div ng-include="'templates/userHeader.html'"></div> 
 
 <div  ng-init="getUserWallFriendsPreveiw()" ng-if="userWallData.isFriend">
 	<div id="userFriendsPreview" >
@@ -48,13 +13,11 @@
 	</div>
 </div>
 
-
 <div id="makePost" ng-if="userWallData.isFriend" ng-controller="PostController">
 	<textarea  id="makePostContent" placeholder=" Make post" ng-model="makePostContent"></textarea>
 	<a id="makePostButton" ng-click="makeNewPost(makePostContent)">Post</a>
 </div>
 
-	
 </div>
 <div id="posts" ng-controller="PostController" ng-init="getWallPosts()">
 <p id="postsTitle">Posts: </p>
@@ -107,6 +70,5 @@
 			</div>	
 		</div>
 	</div>
-
 </div>
 

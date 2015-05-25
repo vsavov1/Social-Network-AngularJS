@@ -76,7 +76,7 @@ app.factory('profileService',
                     success(data);
                 }).error(error);
             },
-
+            
             editProfile : function(userData, success, error) {
                 var request = {
                     method: 'PUT',
@@ -91,7 +91,34 @@ app.factory('profileService',
                     success(data);
                 }).error(error);
             },
+             
+            getOwnFriendsPreviw : function(success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/me/friends/preview',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
 
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            getAllOwnFriends : function(success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/me/friends',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
            
         }
     }

@@ -31,6 +31,11 @@ app.config(function ($routeProvider) {
        controller: 'UserController'
     });
 
+    $routeProvider.when('/api/me/friends', {
+       templateUrl: 'templates/myFriends.html',
+       controller: 'ProfileController'
+    });
+
     $routeProvider.otherwise({
         redirectTo: '/' 
     });

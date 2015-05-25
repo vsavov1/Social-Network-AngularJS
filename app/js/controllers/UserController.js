@@ -14,14 +14,15 @@ app.controller('UserController',
                     //     return;
                     // }
                     // remove comment
-
                     userService.getDataAboutMe(function success(dataAboutme) {
-                        userService.saveDataAboutMe(dataAboutme);
+                        userService.saveDataAboutMe(dataAboutme)
+                        setTimeout(function(){
+                            window.location.reload();
+                        },500);
                     })
                     notifyService.showInfo("Login successful");
-                    setTimeout(function(){
-                        window.location.reload();
-                    },1000);
+
+                    
                     $location.path("/");
                 },
                 function error(err) {
@@ -54,10 +55,13 @@ app.controller('UserController',
 
             userService.register(userData,
                 function success(data) {
+                    userService.getDataAboutMe(function success(dataAboutme) {
+                        userService.saveDataAboutMe(dataAboutme);
+                        setTimeout(function(){
+                            window.location.reload();
+                        }, 500);
+                    })
                     notifyService.showInfo("User registered successfully");
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 500);
                     $location.path("/");
                 },
                 function error(err) {
@@ -70,10 +74,12 @@ app.controller('UserController',
             userService.logout(
                 function success() {
                     notifyService.showInfo("Logout successfully");
-                    $location.path("/");
                     setTimeout(function(){
                         window.location.reload();
                     }, 500);
+                    userService.deleteDataAboutMe();
+                    $location.path("/");
+
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
                 }

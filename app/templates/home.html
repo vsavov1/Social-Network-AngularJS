@@ -1,13 +1,23 @@
-<div id="logowrap">
-	<div id="logo">
-	</div>
-	<p id="logoTitle">SoftBook</p>
-</div>
 <div id="guestBox" ng-if="!isLoggedIn" ng-controller="UserController">
     <p id="welecomeScreenMessage">Welcome to SoftBook project</p>
     <div ng-include="'templates/login.html'" ></div>
     <div id="welcomeVerticlaHr"></div>
     <div ng-include="'templates/register.html'"></div> 
 </div>
+
+<div ng-controller="ProfileController" ng-init="getOwnFriendsPreviw()" ng-if="isLoggedIn">
+	<div id="homeFriendsPreview">
+		<a id="myFriendsPreview"href="#/api/me/friends"><p>My friends({{ownFriends.totalCount}})</p></a>
+		<div id="userFriendsPreviewUser" ng-repeat="user in ownFriends.friends" >
+			<img src="{{user.profileImageData}}" alt="">
+			<p>{{user.name}}</p>
+		</div>
+		<div ng-if="ownFriends.friends.length == 0">
+			<p>No friends</p>
+		</div>	
+	</div>
+	
+</div>
+
 
 

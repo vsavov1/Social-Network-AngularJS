@@ -1,0 +1,11 @@
+<div ng-init="getAllOwnFriends()"  >
+	<div id="userFriendsPreview" class="myFriends">
+		<div id="userFriendsPreviewUser" ng-repeat="user in allOwnFriends">
+			<img src="{{user.profileImageData}}" alt="">
+			<p>{{user.name}}</p>
+		</div>
+		<div ng-if="allFriends.friends.length == 0">
+			<p>No friends</p>
+		</div>	
+	</div>
+</div>

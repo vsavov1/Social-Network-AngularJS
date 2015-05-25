@@ -460,18 +460,12 @@ header {
   float: left;
   width: 37px;
 }
-
 #cancel{
   float: right;
   width: 41px;
   margin-right: 4px;
   background-color: gray;
 }
-
-/*#requestLine p {
-  margin-top: 14px;
-  margin-left: 5px;
-}*/
 #hasPendingRequest, #makePostButton, #myFriend , #allFriends{
   width: 138px;
   height: 19px;
@@ -524,3 +518,35 @@ header {
   float: left;
   margin: 10px;
 }
+#userFriendsPreviewUser p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+}
+#homeFriendsPreview {
+  width: 241px;
+  float: right;
+  height: 500px;
+  margin-top: 93px;
+}
+#myFriendsPreview {
+  float: left;
+  width: 241px;
+  text-decoration: none;
+
+}
+#myFriendsPreview p{
+  width: 190px;
+  height: 19px;
+  background-color: #f96c65;
+  border-radius: 5px;
+  padding: 8px 15px 10px 15px;
+  color: #fff;
+  font-size: 16px;
+  margin-left: 8px;
+}
+.myFriends {
+  margin-top: 93px;
+}
+

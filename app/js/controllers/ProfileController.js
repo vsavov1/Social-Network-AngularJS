@@ -117,6 +117,34 @@ app.controller('ProfileController',
             );
         };
 
+        $scope.getOwnFriendsPreviw = function() {
+            profileService.getOwnFriendsPreviw(
+                function success(data) {
+                    $scope.ownFriends = data;
+                    console.log(data);
+                    // notifyService.showInfo("Friend request successfully canceled");
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
+
+        $scope.getAllOwnFriends = function() {
+            profileService.getAllOwnFriends(
+                function success(data) {
+                    $scope.allOwnFriends = data;
+                    console.log(data);
+                    // notifyService.showInfo("Friend request successfully canceled");
+                },
+                function error(err) {
+                    notifyService.showError("Friend request failed", err);
+                }
+            );
+        };
+
+        
+
         
     }
 );
