@@ -31,15 +31,16 @@
 					<img src="img/profileImageNotFount.png" height="100px" width="100px" alt="">
 				</div>
 				<p id="feedPostLikes">Likes: <span>{{post.likesCount}}</span></p>
+				<p id="feedPostLikes">Comments: <span>{{post.totalCommentsCount}}</span></p>
 				<div ng-if="post.liked == false" ng-controller="PostController">
 					<a  class="likeDislikeButton" id="likeButton"ng-click="likePost(post.id, this)">Like</a>
 				</div>
 				<div ng-if="post.liked != false" ng-controller="PostController">
-					<a class="likeDislikeButton" id="dislikeButton" ng-click="dislikePost(post.id, this)" >Dislike</a>
+					<a class="likeDislikeButton" id="dislikeButton" ng-click="dislikePost(post.id, this)">Dislike</a>
 				</div>
 			</div>
 
-			<div class="feedPostRightSide" ng-init>
+			<div class="feedPostRightSide">
 				<div ng-if="post.wallOwner.username == post.author.username">
 					<p><span><a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>  shared: </p>
 				</div>
@@ -49,8 +50,24 @@
 				</div>
 				<p id="feedPostDate">{{post.date | date : 'dd.MM.yyyy HH:MM'}}</p>
 				<p id="feedPostContent">{{post.postContent}}</p>
+				<div ng-controller="PostController">
+					<button id="showCommentTextArea" ng-click="showCommentTextArea()">Comment</button>
+					<button id="showCommentTextArea" ng-click="showAllComments(post.id)">Show all comment</button>
+					<textarea ng-hide="postComment"  id="commentPostText" ng-model="postCommentText" ></textarea>
+					<button ng-hide="postComment" id="showCommentTextArea" ng-click="submitCommentToPost(post.id)">Submit comment</button>
+				</div>
+
+				<div ng-controller="PostController" ng-repeat="comment in post.comments" id="commentBox" >
+					<div id="commentInPost">
+						<div id="commentProfileImageDiv">
+							<img id="commentProfileImage"ng-src="{{comment.author.profileImageData}}" alt="">
+						</div>
+						<p id="commentProfileName"><a href="#/users/{{comment.author.username}}">{{comment.author.name}}</a> comment: </p>
+						<p id="commentDate">{{comment.date | date : 'dd.MM.yyyy HH:MM' }}</p>
+						<p id="commentContent">{{comment.commentContent}}</p>
+					</div>
+				</div>
 			</div>
-			<div ng-if="scope.busy">Loadd....</div>
 		</div>
 	</div>
 </div>

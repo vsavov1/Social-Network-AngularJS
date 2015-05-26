@@ -5,6 +5,7 @@ app.controller('PostController',
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
+        $scope.postComment = true;
 
         if ($scope.wallPosts.length > 0) {
             $scope.$watch(wallPosts.date, function (val) {
@@ -70,6 +71,42 @@ app.controller('PostController',
                 }
             );
         }
+
+        $scope.showCommentTextArea = function () {
+            $scope.postComment = $scope.postComment === false ? true: false;
+        }
+
+        $scope.submitCommentToPost = function  (id) {
+            var text = $scope.postCommentText;
+            postService.submitCommentToPost(id,text,
+            function success(data) {
+                    notifyService.showInfo("Comment successfully");
+                    $scope.postCommentText = "";
+                    $scope.postComment = $scope.postComment === false ? true: false;
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
+
+                },
+                function error(err) {
+                    notifyService.showError("Comment failed", err);
+                }
+            );
+        }
+
+        $scope.showAllComments = function  (id) {
+            postService.showAllComments(id,
+            function success(data) {
+                 //todo
+                    
+                },
+                function error(err) {
+                    notifyService.showError("Comment failed", err);
+                }
+            );
+        }
+
+        
 
     }
 );
