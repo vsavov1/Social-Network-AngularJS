@@ -518,6 +518,10 @@ header {
   float: left;
   margin: 10px;
 }
+#userFriendsPreviewUser a{
+ text-decoration: none;
+ color:  #f96c65;;
+}
 #userFriendsPreviewUser p{
   white-space: nowrap;
   overflow: hidden;
