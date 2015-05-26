@@ -2,29 +2,32 @@
 
 app.controller('PostController',
     function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams) {
-        $scope.$watch(posts.date, function (val) {
-            $scope.result = $filter('date')(new Date(), val);
-        }, true);
-
+       
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
+
+        if ($scope.wallPosts.length > 0) {
+            $scope.$watch(wallPosts.date, function (val) {
+                $scope.result = $filter('date')(new Date(), val);
+            }, true);
+        }
         
+
         $scope.getWallPosts = function() {
             if ($scope.busy){
                 return;
             }
+
             $scope.busy = true;
             postService.getAllPosts(10, wallPosition,$routeParams.id,
-             function success(data) {
+            function success(data) {
                     $scope.wallPosts = $scope.wallPosts.concat(data);
                     if($scope.wallPosts.length > 0){
                         wallPosition = $scope.wallPosts[$scope.wallPosts.length - 1].id;
                     }
                     $scope.busy = false;
 
-                    // $scope.posts = data;
-                    console.log(data);
                 },
                 function error(err) {
                     notifyService.showError("Login failed", err);
@@ -34,7 +37,7 @@ app.controller('PostController',
 
         $scope.makeNewPost = function(makePostContent) {
             postService.makeNewPost(makePostContent,$routeParams.id,
-             function success(data) {
+            function success(data) {
                     notifyService.showInfo("Post successfully");
                     setTimeout(function(){
                         window.location.reload();
@@ -45,6 +48,19 @@ app.controller('PostController',
                 }
             );
         };
+
+        $scope.likePost = function  (id, thisPost) {
+            postService.likePost(id,
+            function success(data) {
+                    thisPost.post.likesCount++;
+                    thisPost.post.liked = true;
+                    console.log(data);
+                },
+                function error(err) {
+                    notifyService.showError("Like failed", err);
+                }
+            );
+        }
 
     }
 );

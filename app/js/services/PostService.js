@@ -4,8 +4,7 @@ app.factory('postService',
     function ( $http,  baseServiceUrl, userService) {
         return {
             getAllPosts : function(size, wallPositon, username, success, error) {
-
-                 url: baseServiceUrl + '/api/me/feed?StartPostId' 
+                url: baseServiceUrl + '/api/me/feed?StartPostId' 
                 var request = {
                     method: 'GET',
                     url: baseServiceUrl + '/api/users/' + username + '/wall?StartPostId' 
@@ -21,7 +20,6 @@ app.factory('postService',
             },
 
             makeNewPost : function(content, username, success, error) {
-
                 var request = {
                     method: 'POST',
                     url: baseServiceUrl + '/api/posts',
@@ -29,6 +27,20 @@ app.factory('postService',
                         postContent : content,
                         username : username
                     },
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            likePost : function(id, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/Posts/' + id +'/likes',
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }

@@ -158,6 +158,7 @@ app.controller('ProfileController',
                         feedPosition = $scope.feedPosts[$scope.feedPosts.length - 1].id;
                     }
                     $scope.busy = false;
+                    console.log(data);
                 },
                 function error(err) {
                     notifyService.showError("Friend request failed", err);

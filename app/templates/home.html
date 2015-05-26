@@ -31,10 +31,10 @@
 					<img src="img/profileImageNotFount.png" height="100px" width="100px" alt="">
 				</div>
 				<p id="feedPostLikes">Likes: {{post.likesCount}}</p>
-				<div ng-if="post.liked == false">
-					<a href="">Like</a>
+				<div ng-if="post.liked == false" ng-controller="PostController">
+					<a ng-click="likePost(post.id, this)">Like</a>
 				</div>
-				<div ng-if="post.liked != false">
+				<div ng-if="post.liked != false" ng-controller="PostController">
 					<a href="">Dislike</a>
 				</div>
 			</div>
