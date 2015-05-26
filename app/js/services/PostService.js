@@ -3,10 +3,13 @@
 app.factory('postService',
     function ( $http,  baseServiceUrl, userService) {
         return {
-            getAllPosts : function(username, success, error) {
+            getAllPosts : function(size, wallPositon, username, success, error) {
+
+                 url: baseServiceUrl + '/api/me/feed?StartPostId' 
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/users/' + username + "/wall?StartPostId=&PageSize=5",
+                    url: baseServiceUrl + '/api/users/' + username + '/wall?StartPostId' 
+                        + (wallPositon ? "=" + wallPositon : "") + "&PageSize=" + size,
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }

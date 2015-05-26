@@ -19,12 +19,14 @@
 </div>
 
 </div>
-<div id="posts" ng-controller="PostController" ng-init="getWallPosts()">
+<div ng-controller="PostController">
+<div id="posts"  infinite-scroll="getWallPosts()"
+infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 <p id="postsTitle">Posts: </p>
 	<div id="postsTitle" ng-if="posts.length == 0">
 		<p>no posts</p>
 	</div>
-	<div id="post" ng-repeat="post in posts" ng-if="post != undefined">
+	<div id="post" ng-repeat="post in wallPosts" ng-if="post != undefined">
 		<div id="postAuthor">
 			<div ng-if="post.author.profileImageData != null">
 				<img ng-src="{{post.author.profileImageData}}" alt="">
@@ -70,5 +72,6 @@
 			</div>	
 		</div>
 	</div>
+</div>
 </div>
 

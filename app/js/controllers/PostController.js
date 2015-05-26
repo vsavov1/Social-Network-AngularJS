@@ -5,11 +5,25 @@ app.controller('PostController',
         $scope.$watch(posts.date, function (val) {
             $scope.result = $filter('date')(new Date(), val);
         }, true);
+
+        var wallPosition;
+        $scope.wallPosts = [];
+        $scope.busy = false;
         
         $scope.getWallPosts = function() {
-            postService.getAllPosts($routeParams.id,
+            if ($scope.busy){
+                return;
+            }
+            $scope.busy = true;
+            postService.getAllPosts(10, wallPosition,$routeParams.id,
              function success(data) {
-                    $scope.posts = data;
+                    $scope.wallPosts = $scope.wallPosts.concat(data);
+                    if($scope.wallPosts.length > 0){
+                        wallPosition = $scope.wallPosts[$scope.wallPosts.length - 1].id;
+                    }
+                    $scope.busy = false;
+
+                    // $scope.posts = data;
                     console.log(data);
                 },
                 function error(err) {
