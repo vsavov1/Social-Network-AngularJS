@@ -49,6 +49,20 @@ app.factory('postService',
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
+            },
+
+            dislikePost : function(id, success, error) {
+                var request = {
+                    method: 'DELETE',
+                    url: baseServiceUrl + '/api/Posts/' + id +'/likes',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
             }
         }
     }

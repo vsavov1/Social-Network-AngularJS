@@ -62,5 +62,18 @@ app.controller('PostController',
             );
         }
 
+        $scope.dislikePost = function  (id, thisPost) {
+            postService.dislikePost(id,
+            function success(data) {
+                    thisPost.post.likesCount--;
+                    thisPost.post.liked = false;
+                    console.log(data);
+                },
+                function error(err) {
+                    notifyService.showError("Like failed", err);
+                }
+            );
+        }
+
     }
 );
