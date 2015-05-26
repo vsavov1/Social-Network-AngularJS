@@ -2,7 +2,6 @@
 
 app.controller('PostController',
     function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams) {
-       
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
@@ -12,7 +11,6 @@ app.controller('PostController',
                 $scope.result = $filter('date')(new Date(), val);
             }, true);
         }
-        
 
         $scope.getWallPosts = function() {
             if ($scope.busy){
@@ -54,7 +52,6 @@ app.controller('PostController',
             function success(data) {
                     thisPost.post.likesCount++;
                     thisPost.post.liked = true;
-                    console.log(data);
                 },
                 function error(err) {
                     notifyService.showError("Like failed", err);
@@ -67,7 +64,6 @@ app.controller('PostController',
             function success(data) {
                     thisPost.post.likesCount--;
                     thisPost.post.liked = false;
-                    console.log(data);
                 },
                 function error(err) {
                     notifyService.showError("Like failed", err);

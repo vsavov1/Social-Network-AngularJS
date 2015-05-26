@@ -575,9 +575,11 @@ header {
   margin-left: 10px;
   font-size: 18px;
 }
-.feedPostHeader div p span {
+.feedPostHeader div p span a{
   font-weight: bold;
   color: #f96c65;
+  /*width: auto;*/
+  text-decoration: none;
 }
 .feedPostLeftSide {
   float: left;

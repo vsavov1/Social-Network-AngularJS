@@ -141,6 +141,17 @@ app.controller('UserController',
                 }
             );
         }
-        
+
+        $scope.getHoverPreviewData = function (username) {
+            userService.getHoverPreviewData(username,
+                function success(data) {
+                    $scope.wallOwnerUsernamePreview = data;
+                    console.log(data);
+                }, function error (err) {
+                    notifyService.showError("friend preview failed", err);
+                }
+            );
+        }
+
     }
 );
