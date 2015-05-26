@@ -554,5 +554,53 @@ header {
   width: 740px;
   float: left;
   height: auto;
+  margin-bottom: 20px;
+}
+.feedPost {
+  width: 740px;
+  height: auto;
+  float: left;
+  margin-bottom: 15px;
+}
+.feedPostHeader div img{
+  float: left;
+  width: 100px;
+  height: 100px;
+  position:initial;
 }
 
+.feedPostHeader div p{
+  width: 630px;
+  float: right;
+  margin-left: 10px;
+  font-size: 18px;
+}
+.feedPostHeader div p span {
+  font-weight: bold;
+  color: #f96c65;
+}
+.feedPostLeftSide {
+  float: left;
+  width: 100px;
+  height: 150px;
+}
+.feedPostRightSide {
+  width: 630px;
+  float: right;
+  height: auto;
+}
+#feedPostDate, #feedPostContent {
+  width: 630px;
+  float: right;
+  margin-left: 10px;
+  font-size: 15px;
+  margin-top: 5px;
+}
+#feedPostContent {
+  height: auto;
+  background-color: #f1f1f1;
+}
+#feedPostLikes {
+  width: 100px;
+  float: left;
+}

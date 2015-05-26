@@ -1,8 +1,9 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'ngResource']);
+var app = angular.module('app', ['ngRoute', 'ngResource','infinite-scroll']);
 
-app.constant('baseServiceUrl', 'http://softuni-social-network.azurewebsites.net');
+app.constant(
+  'baseServiceUrl', 'http://softuni-social-network.azurewebsites.net');
 
 app.config(function ($routeProvider) {
 

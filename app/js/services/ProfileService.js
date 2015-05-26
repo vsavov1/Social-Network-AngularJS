@@ -120,10 +120,11 @@ app.factory('profileService',
                 }).error(error);
             },
             
-            getFeed : function(success, error) {
+            getFeed : function(size, feedPosition, success, error) {
                 var request = {
                     method: 'GET',
-                    url: baseServiceUrl + '/api/me/feed?StartPostId=&PageSize=5',
+                    url: baseServiceUrl + '/api/me/feed?StartPostId' 
+                    + (feedPosition ? "=" + feedPosition : "") + "&PageSize=" + size,
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }

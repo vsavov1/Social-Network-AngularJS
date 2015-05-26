@@ -11,6 +11,9 @@ app.controller('ProfileController',
             coverImageData : userService.getCoverPicture()
 
         }
+        var feedPosition;
+        $scope.feedPosts = [];
+        $scope.busy = false;
 
         $scope.changePassword = function(userData) {
             profileService.changePassword(userData,
@@ -144,17 +147,25 @@ app.controller('ProfileController',
         };
 
         $scope.feed = function() {
-            profileService.getFeed(
+            if ($scope.busy){
+                return;
+            }
+            $scope.busy = true;
+            profileService.getFeed(10, feedPosition,
                 function success(data) {
-                    $scope.feed = data;
-                    console.log(data);
-                    // notifyService.showInfo("Friend request successfully canceled");
+                    $scope.feedPosts = $scope.feedPosts.concat(data);
+                    if($scope.feedPosts.length > 0){
+                        feedPosition = $scope.feedPosts[$scope.feedPosts.length - 1].id;
+                    }
+                    $scope.busy = false;
                 },
                 function error(err) {
                     notifyService.showError("Friend request failed", err);
                 }
             );
         };
+
+        // $scope.loadMore();
         
     }
 );

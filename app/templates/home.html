@@ -18,19 +18,45 @@
 	</div>
 </div>
 
+<div ng-controller="ProfileController">
+	
+<div id="feed" ng-if="isLoggedIn" infinite-scroll='feed()' infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
+	<div class="feedPost" ng-repeat="post in feedPosts">
+		<div class="feedPostHeader" >
+			<div class="feedPostLeftSide">
+				<div ng-if="post.author.profileImageData != null">
+					<img ng-src="{{post.author.profileImageData}}" height="100px" width="100px" alt="">
+				</div>
+				<div ng-if="post.author.profileImageData == null">
+					<img src="img/profileImageNotFount.png" height="100px" width="100px" alt="">
+				</div>
+				<p id="feedPostLikes">Likes: {{post.likesCount}}</p>
+				<div ng-if="post.liked == false">
+					<a href="">Like</a>
+				</div>
+				<div ng-if="post.liked != false">
+					<a href="">Dislike</a>
+				</div>
+			</div>
+			
 
-<div id="feed" ng-if="isLoggedIn" ng-controller="ProfileController" ng-init="feed()">
-	<div id="feedPost" ng-repeat="post in feed">
-		<div id="postAuthor">
-			<div ng-if="post.author.profileImageData != null">
-				<img ng-src="{{post.author.profileImageData}}" alt="">
+			<div class="feedPostRightSide">
+				<div ng-if="post.wallOwner.username == post.author.username">
+					<p><span>{{post.wallOwner.name}}</span>  shared: </p>
+				</div>
+
+				<div ng-if="post.wallOwner.username != post.author.username">
+					<p><span>{{post.author.name}}</span> > <span>{{post.wallOwner.name}}</span> </p>
+				</div>
+				<p id="feedPostDate">{{post.date | date : 'dd.MM.yyyy HH:MM'}}</p>
+				<p id="feedPostContent">{{post.postContent}}</p>
 			</div>
-			<div ng-if="post.author.profileImageData == null">
-				<img src="img/profileImageNotFount.png" height="100px" width="100px" alt="">
-			</div>
-			<p>{{post.author.name}}</p>
+
+			<div ng-if="scope.busy">Loadd....</div>
+
 		</div>
-		<p id="postDate">{{post.date | date : 'dd.MM.yyyy HH:MM'}}</p>
+
+	<!-- 	
 		<p id="postContent">{{post.postContent }}</p>
 		<p id="likesCount">Likes: {{post.likesCount}}</p>
 		<div ng-if="post.liked == false">
@@ -64,10 +90,13 @@
 				</div>
 
 			</div>	
-		</div>
-		
+		</div> -->
 	</div>
+</div>
+<div ng-if="busy == true">
+	<p style="margin-left: 500px; float: bottom">loading</p>
 </div>
 
 
 
+</div>
