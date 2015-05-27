@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('PostController',
-    function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams) {
+    function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams, $window, $interval) {
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
@@ -11,6 +11,12 @@ app.controller('PostController',
                 $scope.result = $filter('date')(new Date(), val);
             }, true);
         }
+
+        $scope.modalShown = false;
+        $scope.toggleModal = function() {
+            $scope.editPostData = "";
+            $scope.modalShown = !$scope.modalShown;
+        };
 
         $scope.getWallPosts = function() {
             if ($scope.busy){
@@ -107,7 +113,19 @@ app.controller('PostController',
             );
         }
 
-        
+        $scope.editPost = function  (id, content) {
+            postService.editPost(id, content,
+            function success(data) {
+                    notifyService.showInfo("Comment edit successfully");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
+                },
+                function error(err) {
+                    notifyService.showError("Comment failed", err);
+                }
+            );
+        }
 
     }
 );

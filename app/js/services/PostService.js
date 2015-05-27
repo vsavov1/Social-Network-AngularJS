@@ -94,6 +94,24 @@ app.factory('postService',
                 $http(request).success(function(data) {
                     success(data);
                 }).error(error);
+            }, 
+
+            editPost : function(id, content, success, error) {
+                console.log(content);
+                var request = {
+                    method: 'PUT',
+                    url: baseServiceUrl + '/api/Posts/' + id ,
+                    data: {
+                        postContent: content
+                    },
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
             }
         }
     }

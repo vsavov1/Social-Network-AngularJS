@@ -54,9 +54,18 @@
 					<div ng-if="post.wallOwner.isFriend || post.wallOwner.username == userData.currentUsername">
 						<button id="showCommentTextArea" ng-click="showCommentTextArea()">Comment</button>
 					</div>
-					<div ng-if="post.wallOwner.username == userData.currentUsername" ng-controller="PostController">
+					<div ng-if="post.wallOwner.username == userData.currentUsername || post.author.username == userData.currentUsername" ng-controller="PostController">
 						<button id="showCommentTextArea" ng-click="deletePost(post.id)">Delete post</button>
 					</div>
+					<div ng-if="post.author.username == userData.currentUsername" ng-controller="PostController">
+						<button id="showCommentTextArea" ng-click='toggleModal()'>Edit post</button>
+						<modal-dialog show='modalShown' width='auto' height='auto' style="padding: 30px;">
+						  <textarea id="postEditArea" ng-model="editPostData"></textarea>
+						  <button id="saveEditButton" ng-click="editPost(post.id, editPostData)">save</button>
+						</modal-dialog>
+						
+					</div>
+					
 					<button id="showCommentTextArea" ng-click="showAllComments(post.id)">Show all comments</button>
 					<textarea ng-hide="postComment"  id="commentPostText" ng-model="postCommentText" ></textarea>
 					<button ng-hide="postComment" id="showCommentTextArea" ng-click="submitCommentToPost(post.id)">Submit comment</button>
