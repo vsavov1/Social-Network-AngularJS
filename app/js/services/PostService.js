@@ -65,23 +65,6 @@ app.factory('postService',
                 }).error(error);
             },
 
-            submitCommentToPost : function(id, text, success, error) {
-                var request = {
-                    method: 'POST',
-                    url: baseServiceUrl + '/api/posts/' + id + '/comments',
-                    data: {
-                        commentContent: text
-                    },
-                    headers: {
-                        'Authorization' : 'Bearer ' + userService.Authorization()
-                    }
-                };
-
-                $http(request).success(function(data) {
-                    success(data);
-                }).error(error);
-            },
-
             deletePost : function(id, success, error) {
                 var request = {
                     method: 'DELETE',

@@ -48,6 +48,21 @@ app.factory('commentService',
                 }).error(error);
             },
 
+            deleteComment : function(postId, commentId, success, error) {
+                var request = {
+                    method: 'DELETE',
+                    url: baseServiceUrl + '/api/posts/' + postId + '/comments/' + commentId  ,
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+
             dislikeComment : function(postId, commentId, success, error) {
                 var request = {
                     method: 'DELETE',
@@ -62,8 +77,22 @@ app.factory('commentService',
                 }).error(error);
             },
 
+            editComment : function(postId, commentId, content, success, error) {
+                var request = {
+                    method: 'PUT',
+                    url: baseServiceUrl + '/api/Posts/' + postId + '/comments/' + commentId ,
+                    data: {
+                        commentContent: content
+                    },
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
 
-
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            }
         }
     }
 );

@@ -12,12 +12,31 @@ app.controller('CommentController',
             currentUsername : userService.getUserName()
         }
 
+        $scope.modalShown = false;
+        $scope.toggleModal = function() {
+            $scope.editPostData = "";
+            $scope.modalShown = !$scope.modalShown;
+        };
+
         $scope.showCommentTextArea = function () {
             $scope.postComment = $scope.postComment === false ? true: false;
         }
 
-        $scope.submitCommentToPost = function  (id) {
-            var text = $scope.postCommentText;
+        $scope.deleteComment = function  (postId,commentId,thisPost) {
+            commentService.deleteComment(postId,commentId,
+            function success(data) {
+                // thisPost.comment.likesCount++;
+                // thisPost.comment.liked = true;
+                notifyService.showInfo("Delete successfully");
+
+            },
+            function error(err) {
+                notifyService.showError("Like failed", err);
+            });
+        }
+
+        $scope.submitCommentToPost = function  (id, content) {
+            var text = content;
             commentService.submitCommentToPost(id,text,
             function success(data) {
                 notifyService.showInfo("Comment successfully");
@@ -44,11 +63,11 @@ app.controller('CommentController',
             });
         }
         
-        $scope.likeComment = function  (postId,commentId,thisPost) {
+        $scope.likeComment = function  (postId,commentId, thisComment) {
             commentService.likeComment(postId,commentId,
             function success(data) {
-                thisPost.comment.likesCount++;
-                thisPost.comment.liked = true;
+                thisComment.comment.likesCount++;
+                thisComment.comment.liked = true;
             },
             function error(err) {
                 notifyService.showError("Like failed", err);
@@ -64,6 +83,20 @@ app.controller('CommentController',
             function error(err) {
                 notifyService.showError("DisLike failed", err);
             });
+        }
+
+        $scope.editComment = function  (postId, commentId, content) {
+            commentService.editComment(postId, commentId, content,
+            function success(data) {
+                    notifyService.showInfo("Comment successfully edited");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
+                },
+                function error(err) {
+                    notifyService.showError("Comment failed", err);
+                }
+            );
         }
 
 

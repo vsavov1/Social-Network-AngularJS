@@ -731,6 +731,7 @@ header {
   cursor: pointer;
   border-radius: 3px;
   color: white;
+  text-decoration: none;
 }
 #likeButton {
   background-color: #f96c65;
@@ -739,7 +740,10 @@ header {
   background-color: gray;
 }
 
-
+#commentEditA {
+  position: absolute;
+  margin-left: 200px;
+}
 
 .ng-modal-overlay {
   position:absolute;

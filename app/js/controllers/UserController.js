@@ -69,12 +69,15 @@ app.controller('UserController',
         $scope.logout = function () {
             userService.logout(
                 function success() {
+                    userService.deleteDataAboutMe();
                     notifyService.showInfo("Logout successfully");
+                    setTimeout(function(){
+                            window.location.reload();
+                        }, 500);
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
                 }
             );
-            userService.deleteDataAboutMe();
         }
 
         $scope.searchUser = function (searchUser) {
