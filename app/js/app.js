@@ -41,13 +41,13 @@ app.config(function ($routeProvider) {
         redirectTo: '/' 
     });
 
+
 });
 
-// app.run(function ($rootScope, $location, userService) {
-//   $rootScope.$on('$locationChangeStart', function (event) {
-//     if ($location.path().indexOf("/user/") != -1 && !userService.isLoggedIn()) {
-//       // Authorization check: anonymous site visitors cannot access user routes
-//       $location.path("/");
-//     }
-//   });
-// });
+app.run(function ($rootScope, $location, userService, notifyService) {
+    $rootScope.$on('$routeChangeStart', function (event) {
+        if (!userService.isLoggedIn() ) {
+            $location.path("/");
+        }
+    });
+});

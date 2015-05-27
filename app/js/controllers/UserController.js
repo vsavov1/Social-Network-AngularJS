@@ -10,11 +10,6 @@ app.controller('UserController',
         $scope.login = function(userData) {
             userService.login(userData,
                 function success(data) {
-                    // if (userData.username.length < 6) {
-                    //     notifyService.showWarning("Username length must be greater than 6 chars.");
-                    //     return;
-                    // }
-                    // remove comment
                     userService.getDataAboutMe(function success(dataAboutme) {
                         userService.saveDataAboutMe(dataAboutme)
                         setTimeout(function(){
@@ -75,16 +70,11 @@ app.controller('UserController',
             userService.logout(
                 function success() {
                     notifyService.showInfo("Logout successfully");
-                    setTimeout(function(){
-                        window.location.reload();
-                    }, 500);
-                    userService.deleteDataAboutMe();
-                    $location.path("/");
-
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
                 }
             );
+            userService.deleteDataAboutMe();
         }
 
         $scope.searchUser = function (searchUser) {
@@ -137,17 +127,6 @@ app.controller('UserController',
             userService.getUserWallFriendsPreveiw($routeParams.id,
                 function success(data) {
                     $scope.userWallFriendsPreveiw = data;
-                }, function error (err) {
-                    notifyService.showError("friend preview failed", err);
-                }
-            );
-        }
-
-        $scope.getHoverPreviewData = function (username) {
-            userService.getHoverPreviewData(username,
-                function success(data) {
-                    $scope.wallOwnerUsernamePreview = data;
-                    console.log(data);
                 }, function error (err) {
                     notifyService.showError("friend preview failed", err);
                 }

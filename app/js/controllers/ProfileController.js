@@ -79,7 +79,7 @@ app.controller('ProfileController',
                     
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("Send friend request failed", err);
                 }
             );
         };
@@ -94,7 +94,7 @@ app.controller('ProfileController',
                     $("#frienadRequestsOverlay").attr("data-t",0);
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("get friend requests request failed", err);
                 }
             );
         };
@@ -105,7 +105,7 @@ app.controller('ProfileController',
                     notifyService.showInfo("Friend request successfully accepted");
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("Accept friend request failed", err);
                 }
             );
         };
@@ -116,7 +116,7 @@ app.controller('ProfileController',
                     notifyService.showInfo("Friend request successfully canceled");
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("Cancel friend request failed", err);
                 }
             );
         };
@@ -125,11 +125,9 @@ app.controller('ProfileController',
             profileService.getOwnFriendsPreviw(
                 function success(data) {
                     $scope.ownFriends = data;
-                    console.log(data);
-                    // notifyService.showInfo("Friend request successfully canceled");
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("get own friends preview failed", err);
                 }
             );
         };
@@ -138,11 +136,9 @@ app.controller('ProfileController',
             profileService.getAllOwnFriends(
                 function success(data) {
                     $scope.allOwnFriends = data;
-                    console.log(data);
-                    // notifyService.showInfo("Friend request successfully canceled");
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("get all friend preview request failed", err);
                 }
             );
         };
@@ -159,15 +155,12 @@ app.controller('ProfileController',
                         feedPosition = $scope.feedPosts[$scope.feedPosts.length - 1].id;
                     }
                     $scope.busy = false;
-                    console.log(data);
                 },
                 function error(err) {
-                    notifyService.showError("Friend request failed", err);
+                    notifyService.showError("Feed  failed", err);
                 }
             );
         };
 
-        // $scope.loadMore();
-        
     }
 );

@@ -75,6 +75,14 @@
 					<div id="commentInPost">
 						<div id="commentProfileImageDiv">
 							<img id="commentProfileImage"ng-src="{{comment.author.profileImageData}}" alt="">
+							<p>{{comment.likesCount}}</p>
+							<div ng-if="comment.liked == false" ng-controller="CommentController">
+								<a  class="likeDislikeButton" id="likeButton"ng-click="likeComment(post.id, comment.id, this)">Like</a>
+							</div>
+							<div ng-if="comment.liked != false" ng-controller="CommentController">
+								<a class="likeDislikeButton" id="dislikeButton" ng-click="dislikeComment(post.id, comment.id, this)">Dislike</a>
+							</div>
+
 						</div>
 						<p id="commentProfileName"><a href="#/users/{{comment.author.username}}">{{comment.author.name}}</a> comment: </p>
 						<p id="commentDate">{{comment.date | date : 'dd.MM.yyyy HH:MM' }}</p>
@@ -86,7 +94,7 @@
 	</div>
 </div>
 <div ng-if="busy == true">
-	<p style="margin-left: 500px; float: bottom">loading</p>
+	<img src="http://www.blackwolves.com/img/spinner.gif" alt="" style="margin-left: 340px; float: bottom">
 </div>
 
 

@@ -20,11 +20,38 @@ app.factory('commentService',
                 }).error(error);
             },
 
-
             showAllComments : function(id, success, error) {
                 var request = {
                     method: 'GET',
                     url: baseServiceUrl + '/api/posts/' + id + '/comments',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            likeComment : function(postId, commentId, success, error) {
+                var request = {
+                    method: 'POST',
+                    url: baseServiceUrl + '/api/posts/' + postId + '/comments/' + commentId + '/likes',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
+
+            dislikeComment : function(postId, commentId, success, error) {
+                var request = {
+                    method: 'DELETE',
+                    url: baseServiceUrl + '/api/posts/' + postId + '/comments/' + commentId + '/likes',
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }
