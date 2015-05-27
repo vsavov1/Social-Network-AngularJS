@@ -75,7 +75,7 @@
 					<div id="commentInPost">
 						<div id="commentProfileImageDiv">
 							<img id="commentProfileImage"ng-src="{{comment.author.profileImageData}}" alt="">
-							<p>{{comment.likesCount}}</p>
+							<p>Likes: {{comment.likesCount}}</p>
 							<div ng-if="comment.liked == false" ng-controller="CommentController">
 								<a  class="likeDislikeButton" id="likeButton"ng-click="likeComment(post.id, comment.id, this)">Like</a>
 							</div>

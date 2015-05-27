@@ -102,13 +102,13 @@ app.controller('PostController',
         $scope.deletePost = function  (id) {
             postService.deletePost(id,
             function success(data) {
-                    notifyService.showInfo("Comment successfully deleted");
+                    notifyService.showInfo("Post successfully deleted");
                     setTimeout(function(){
                         window.location.reload();
                     }, 500);
                 },
                 function error(err) {
-                    notifyService.showError("Comment failed", err);
+                    notifyService.showError("Post delete failed", err);
                 }
             );
         }
@@ -116,7 +116,7 @@ app.controller('PostController',
         $scope.editPost = function  (id, content) {
             postService.editPost(id, content,
             function success(data) {
-                    notifyService.showInfo("Comment successfully edited");
+                    notifyService.showInfo("Post successfully edited");
                     setTimeout(function(){
                         window.location.reload();
                     }, 500);

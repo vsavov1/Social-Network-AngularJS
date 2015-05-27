@@ -669,7 +669,7 @@ header {
   width: 50px;
   float: left;
   color: #f96c65;
-  
+
 }
 
 
@@ -703,13 +703,18 @@ header {
   padding-top: 5px;
   margin-top: 5px;
 }
-
+#friendsFilter{
+  margin-top: 20px;
+  float: left;
+  width: 1000px;
+  margin-left: 10px;
+}
 
 #commentInPost {
   width: 630px;
   min-height: 80px;
   height: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 #commentBox , #commentBox2{
   float: right;

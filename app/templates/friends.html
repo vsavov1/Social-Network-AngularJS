@@ -2,12 +2,16 @@
 
 <div ng-init="getAllFriends()"  >
 	<div id="userFriendsPreview">
-		<div id="userFriendsPreviewUser" ng-repeat="user in allFriends">
-			<img src="{{user.profileImageData}}" alt="">
-			<p>{{user.name}}</p>
+		<div id="friendsFilter">
+			<input  ng-model="nameFilter.name" type="text" placeholder="Friend filter">
+		</div>
+		<div id="userFriendsPreviewUser" ng-repeat="user in allFriends | filter: nameFilter">
+			<a href="#/users/{{user.username}}"><img src="{{user.profileImageData}}" alt=""></a>
+			<p><a href="#/users/{{user.username}}">{{user.name}}</a></p>
 		</div>
 		<div ng-if="allFriends.friends.length == 0">
 			<p>No friends</p>
 		</div>	
+
 	</div>
 </div>

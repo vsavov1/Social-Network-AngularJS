@@ -1,6 +1,9 @@
 <div ng-init="getAllOwnFriends()"  >
 	<div id="userFriendsPreview" class="myFriends">
-		<div id="userFriendsPreviewUser" ng-repeat="user in allOwnFriends">
+		<div id="friendsFilter">
+			<input  ng-model="nameFilter.name" type="text" placeholder="Friend filter">
+		</div>
+		<div id="userFriendsPreviewUser" ng-repeat="user in allOwnFriends | filter: nameFilter">
 			<img src="{{user.profileImageData}}" alt="">
 			<p>{{user.name}}</p>
 		</div>
