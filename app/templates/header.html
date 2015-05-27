@@ -31,8 +31,8 @@
 			<a id="logout" href="#/logout" ng-click="logout()" ></a>
 		</div>
 		<div id="currentUser" >
-			<img ng-src="{{profileImageData}}" alt="" height="50px" width="50px">
-			<p>{{userFullName}}</p>
+				<a href="#/users/{{currentUsername}}"><img ng-src="{{profileImageData}}" alt="" height="50px" width="50px"></a>
+			<p>	<a href="#/users/{{currentUsername}}">{{userFullName}}</a></p>
 		</div>
 		<div id="searchBox">
 			<input type="text" id="searchBar" placeholder=" Search user"

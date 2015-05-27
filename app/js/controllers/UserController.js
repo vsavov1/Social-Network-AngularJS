@@ -5,6 +5,7 @@ app.controller('UserController',
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userFullName = userService.getUserFullName();
         $scope.profileImageData = userService.getProfilePicture();
+        $scope.currentUsername = userService.getUserName();
 
         $scope.login = function(userData) {
             userService.login(userData,
@@ -104,7 +105,7 @@ app.controller('UserController',
                     console.log(data);
                     $scope.userWallData = data;
                 }, function error (err) {
-                    notifyService.showError("Search failed", err);
+                    notifyService.showError("Wall failed", err);
                 }
             );
         }

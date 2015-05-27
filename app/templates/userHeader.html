@@ -18,17 +18,25 @@
 	</div>
 
 	<p id="userWallFullName">{{userWallData.name}}</p>
-
-	<div ng-controller="ProfileController" ng-if="userWallData.isFriend == false && userWallData.hasPendingRequest == false" >
-		<a id="sendFriendRequest" ng-click="sendFriendRequest(userWallData.username)">Send friend request</a>
+	<div  ng-controller="ProfileController">
+		<div ng-if="userWallData.isFriend == false && 
+													  userWallData.hasPendingRequest == false &&
+													  userWallData.username != userData.currentUsername" >
+			<a id="sendFriendRequest" ng-click="sendFriendRequest(userWallData.username)">Send friend request</a>
+		</div>
 	</div>
 
-	<div ng-controller="ProfileController" ng-if="userWallData.hasPendingRequest == true">
+	<div ng-controller="ProfileController" ng-if="userWallData.hasPendingRequest == true &&
+						userWallData.username != userData.currentUsername">
 		<a id="hasPendingRequest">Friend request sent</a>
 	</div>
 
-	<div ng-controller="ProfileController" ng-if="userWallData.isFriend == true">
-		<a id="myFriend">Friend</a>
-		<a href="#/users/{{userWallData.username}}/friends" id="allFriends" >All friends</a>
+	<div ng-controller="ProfileController" >
+		<div ng-if="userWallData.isFriend == true">
+			<a id="myFriend"  >Friend</a>
+		</div>
+		<div ng-if="userWallData.isFriend == true">
+			<a href="#/users/{{userWallData.username}}/friends" id="allFriends" >All friends</a>
+		</div>
 	</div>
 </div>

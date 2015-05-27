@@ -8,9 +8,10 @@ app.controller('ProfileController',
             email : userService.getUserEmail(),
             gender : userService.getUserGender(),
             profileImageData : userService.getProfilePicture(),
-            coverImageData : userService.getCoverPicture()
-
+            coverImageData : userService.getCoverPicture(),
+            currentUsername : userService.getUserName()
         }
+
         var feedPosition;
         $scope.feedPosts = [];
         $scope.busy = false;

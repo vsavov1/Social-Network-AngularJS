@@ -5,7 +5,6 @@ app.controller('PostController',
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
-        $scope.postComment = true;
 
         if ($scope.wallPosts.length > 0) {
             $scope.$watch(wallPosts.date, function (val) {
@@ -94,11 +93,13 @@ app.controller('PostController',
             );
         }
 
-        $scope.showAllComments = function  (id) {
-            postService.showAllComments(id,
+        $scope.deletePost = function  (id) {
+            postService.deletePost(id,
             function success(data) {
-                 //todo
-                    
+                    notifyService.showInfo("Comment deleted successfully");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 500);
                 },
                 function error(err) {
                     notifyService.showError("Comment failed", err);

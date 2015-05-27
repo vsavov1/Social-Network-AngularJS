@@ -82,10 +82,10 @@ app.factory('postService',
                 }).error(error);
             },
 
-            showAllComments : function(id, success, error) {
+            deletePost : function(id, success, error) {
                 var request = {
-                    method: 'GET',
-                    url: baseServiceUrl + '/api/posts/' + id + '/comments',
+                    method: 'DELETE',
+                    url: baseServiceUrl + '/api/Posts/' + id ,
                     headers: {
                         'Authorization' : 'Bearer ' + userService.Authorization()
                     }
