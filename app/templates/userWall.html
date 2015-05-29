@@ -1,5 +1,4 @@
 <div ng-include="'templates/userHeader.html'"></div> 
-
 <div  ng-init="getUserWallFriendsPreveiw()" ng-if="userWallData.isFriend">
 	<div id="userFriendsPreview" >
 		<p id="postsTitle">Friends: </p>
@@ -18,7 +17,6 @@
 		<a id="makePostButton" ng-click="makeNewPost(makePostContent)">Post</a>
 	</div>
 </div>
-
 
 </div>
 <div ng-controller="PostController">
@@ -51,14 +49,13 @@ infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 				<div ng-if="post.wallOwner.username == post.author.username">
 					<p><span><a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>  shared: </p>
 				</div>
-
 				<div ng-if="post.wallOwner.username != post.author.username">
 					<p><span><a href="#/users/{{post.author.username}}">{{post.author.name}}</a></span> > <span><a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span> </p>
 				</div>
 				<p id="feedPostDate">{{post.date | date : 'dd.MM.yyyy HH:MM'}}</p>
 				<p id="feedPostContent">{{post.postContent}}</p>
 				<div ng-controller="CommentController">
-					<div ng-if="post.wallOwner.isFriend || post.wallOwner.username == userData.currentUsername">
+					<div ng-if="(post.wallOwner.isFriend || post.author.isFriend) || post.wallOwner.username == userData.currentUsername">
 						<div ng-if="post.wallOwner.isFriend || post.wallOwner.username == userData.currentUsername">
 						<button id="showCommentTextArea" ng-click="showCommentTextArea()">Comment</button>
 					</div>
@@ -73,12 +70,7 @@ infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 						</modal-dialog>
 						
 					</div>
-						<!-- <button id="showCommentTextArea" ng-click="showAllComments(post.id)">Show all comments</button>
-						<textarea ng-hide="postComment"  id="commentPostText" ng-model="postCommentText" ></textarea>
-						<button ng-hide="postComment" id="showCommentTextArea" ng-click="submitCommentToPost(post.id)">Submit comment</button> -->
-					
-					
-					<button id="showCommentTextArea" ng-click="showAllComments(post.id)">Show all comments</button>
+					<button id="showCommentTextArea" ng-click="showAllComments(this, post.id)">Show all comments({{post.totalCommentsCount}})</button>
 					<textarea ng-hide="postComment"  id="commentPostText" ng-model="postCommentText"></textarea>
 					<button ng-hide="postComment" id="showCommentTextArea" ng-click="submitCommentToPost(post.id, postCommentText)">Submit comment</button>
 				</div>
@@ -90,11 +82,11 @@ infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 							<p>Likes: {{comment.likesCount}}</p>
 							
 
-							<div ng-if="comment.liked == false && post.wallOwner.isFriend" ng-controller="CommentController" >
+							<div ng-if="comment.liked == false && (post.wallOwner.isFriend || post.author.isFriend)" ng-controller="CommentController" >
 								<a  class="likeDislikeButton" id="likeButton"ng-click="likeComment(post.id, comment.id, this)">Like</a>
 							</div>
 
-							<div ng-if="comment.liked != false && post.wallOwner.isFriend" ng-controller="CommentController">
+							<div ng-if="comment.liked != false && (post.wallOwner.isFriend || post.author.isFriend)" ng-controller="CommentController">
 								<a class="likeDislikeButton" id="dislikeButton" ng-click="dislikeComment(post.id, comment.id, this)">Dislike</a>
 							</div>
 

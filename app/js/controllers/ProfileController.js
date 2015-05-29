@@ -15,6 +15,7 @@ app.controller('ProfileController',
         var feedPosition;
         $scope.feedPosts = [];
         $scope.busy = false;
+        $scope.showMe = false;
 
         $scope.changePassword = function(userData) {
             profileService.changePassword(userData,

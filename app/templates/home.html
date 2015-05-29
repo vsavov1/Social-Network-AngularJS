@@ -27,7 +27,7 @@
 				<div ng-if="post.author.profileImageData != null">
 					<img ng-src="{{post.author.profileImageData}}" height="100px" width="100px" alt="">
 				</div>
-				<div ng-if="post.author.profileImageData == null">
+				<div ng-if="post.author.profileImageData == null" ng-mouseover="showMe = true" ng-mouseleave="showMe = false">
 					<img src="img/profileImageNotFount.png" height="100px" width="100px" alt="">
 				</div>
 				<p id="feedPostLikes">Likes: <span>{{post.likesCount}}</span></p>
@@ -44,6 +44,13 @@
 				<div ng-if="post.wallOwner.username == post.author.username">
 					<p><span><a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span>  shared: </p>
 				</div>
+				
+					<div ng-show="showMe" id="hoverUserPreveiw">
+						<p>asdad</p>
+					</div>
+
+
+
 
 				<div ng-if="post.wallOwner.username != post.author.username">
 					<p><span><a href="#/users/{{post.author.username}}">{{post.author.name}}</a></span> > <span><a href="#/users/{{post.wallOwner.username}}">{{post.wallOwner.name}}</a></span> </p>
@@ -66,7 +73,7 @@
 						
 					</div>
 					
-					<button id="showCommentTextArea" ng-click="showAllComments(post.id)">Show all comments</button>
+					<button id="showCommentTextArea" ng-click="showAllComments(this, post.id)">Show all comments({{post.totalCommentsCount}})</button>
 					<textarea ng-hide="postComment"  id="commentPostText" ng-model="postCommentText" ></textarea>
 					<button ng-hide="postComment" id="showCommentTextArea" ng-click="submitCommentToPost(post.id, postCommentText)">Submit comment</button>
 				</div>

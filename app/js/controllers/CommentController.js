@@ -13,6 +13,7 @@ app.controller('CommentController',
         }
 
         $scope.modalShown = false;
+        
         $scope.toggleModal = function() {
             $scope.editPostData = "";
             $scope.modalShown = !$scope.modalShown;
@@ -25,10 +26,7 @@ app.controller('CommentController',
         $scope.deleteComment = function  (postId,commentId,thisPost) {
             commentService.deleteComment(postId,commentId,
             function success(data) {
-                // thisPost.comment.likesCount++;
-                // thisPost.comment.liked = true;
-                notifyService.showInfo("Delete successfully");
-
+                notifyService.showInfo("Comment successfully deleted");
             },
             function error(err) {
                 notifyService.showError("Like failed", err);
@@ -52,11 +50,10 @@ app.controller('CommentController',
             });
         }
 
-        $scope.showAllComments = function  (id) {
-            postService.showAllComments(id,
+        $scope.showAllComments = function  (thisComment, postId) {
+            commentService.showAllComments(postId,
             function success(data) {
-                 //todo
-                    
+                thisComment.post.comments = data;
             },
             function error(err) {
                 notifyService.showError("Comment failed", err);
@@ -98,7 +95,5 @@ app.controller('CommentController',
                 }
             );
         }
-
-
     }
 );
