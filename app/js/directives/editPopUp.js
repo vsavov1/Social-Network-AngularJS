@@ -4,8 +4,8 @@ app.directive('modalDialog', function() {
     scope: {
       show: '='
     },
-    replace: true, // Replace with the template below
-    transclude: true, // we want to insert custom content inside the directive
+    replace: true, 
+    transclude: true, 
     link: function(scope, element, attrs) {
       scope.dialogStyle = {};
       if (attrs.width)

@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('ProfileController',
-    function ($scope, $location, userService, profileService, notifyService, $routeParams) {
+    function ($scope, $location, userService, profileService, notifyService) {
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userData = {
             name : userService.getUserFullName(),
@@ -53,8 +53,8 @@ app.controller('ProfileController',
                  var reader = new FileReader();
                  reader.onload = function(e) {
                     $scope.userData.profileImageData = reader.result;
-                    console.log($scope.userData.profileImageData);
                  };
+
                  reader.readAsDataURL(photofile);
              });
         };
@@ -89,7 +89,6 @@ app.controller('ProfileController',
         $scope.getFriendRequests = function() {
             profileService.getFriendRequests(
                 function success(data) {
-                    console.log(data);
                     $scope.pendingRequest = data
                     $("#frienadRequestsOverlay").show();
                     $("#frienadRequestsOverlay").attr("data-t",0);
@@ -144,10 +143,24 @@ app.controller('ProfileController',
             );
         };
 
+
+       $scope.getUserPreviewData = function(id) {
+            profileService.getUserPreviewData(id,
+                function success(data) {
+                    $scope.userPreview = data;
+                },
+                function error(err) {
+                    notifyService.showError("get all friend preview request failed", err);
+                }
+            );
+        };
+
+
         $scope.feed = function() {
             if ($scope.busy){
                 return;
             }
+
             $scope.busy = true;
             profileService.getFeed(10, feedPosition,
                 function success(data) {
@@ -165,3 +178,5 @@ app.controller('ProfileController',
 
     }
 );
+
+

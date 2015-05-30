@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('PostController',
-    function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams, $window, $interval) {
+    function ($scope, $location, postService, $filter, userService, notifyService, $routeParams, $window, $interval) {
         var wallPosition;
         $scope.wallPosts = [];
         $scope.busy = false;
@@ -38,8 +38,8 @@ app.controller('PostController',
                     if($scope.wallPosts.length > 0){
                         wallPosition = $scope.wallPosts[$scope.wallPosts.length - 1].id;
                     }
+                    
                     $scope.busy = false;
-
                 },
                 function error(err) {
                     notifyService.showError("Login failed", err);

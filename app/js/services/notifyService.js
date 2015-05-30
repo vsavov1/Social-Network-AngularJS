@@ -11,6 +11,7 @@ app.factory('notifyService',
                     timeout: 1000}
                 );
             },
+
             showWarning: function  (msg) {
                 noty({
                     text: msg,
@@ -19,6 +20,7 @@ app.factory('notifyService',
                     timeout: 1000
                 });
             },
+            
             showError: function(msg, serverError) {
                 var errors = [];
                 if (serverError && serverError.error_description) {

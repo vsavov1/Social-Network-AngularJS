@@ -134,7 +134,20 @@ app.factory('profileService',
                     success(data);
                 }).error(error);
             },
-           
+
+            getUserPreviewData : function(id, success, error) {
+                var request = {
+                    method: 'GET',
+                    url: baseServiceUrl + '/api/users/' + id + '/preview',
+                    headers: {
+                        'Authorization' : 'Bearer ' + userService.Authorization()
+                    }
+                };
+
+                $http(request).success(function(data) {
+                    success(data);
+                }).error(error);
+            },
         }
     }
 );

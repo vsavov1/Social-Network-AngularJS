@@ -40,8 +40,6 @@ app.config(function ($routeProvider) {
     $routeProvider.otherwise({
         redirectTo: '/' 
     });
-
-
 });
 
 app.run(function ($rootScope, $location, userService, notifyService) {

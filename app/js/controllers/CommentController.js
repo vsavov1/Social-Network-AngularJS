@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('CommentController',
-    function ($scope, $rootScope, $location, postService, $filter, userService, notifyService, $routeParams, commentService) {
+    function ($scope, $location, userService, notifyService, commentService) {
         $scope.postComment = true;
         $scope.userData = {
             name : userService.getUserFullName(),

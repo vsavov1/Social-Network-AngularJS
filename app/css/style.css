@@ -721,14 +721,6 @@ header {
   margin-top: 10px;
 }
 
-
-#hoverUserPreveiw {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-  position: absolute;
-  margin-top: 500px;
-}
 #feedPostLikes {
   color: #f96c65;
 }

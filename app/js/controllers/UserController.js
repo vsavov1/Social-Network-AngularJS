@@ -1,7 +1,7 @@
 'use strict';
 
 app.controller('UserController',
-    function ($scope, $rootScope, $location, userService, notifyService, $routeParams) {
+    function ($scope, $location, userService, notifyService, $routeParams) {
         $scope.isLoggedIn = userService.isLoggedIn();
         $scope.userFullName = userService.getUserFullName();
         $scope.profileImageData = userService.getProfilePicture();
@@ -17,8 +17,6 @@ app.controller('UserController',
                         },500);
                     })
                     notifyService.showInfo("Login successful");
-
-                    
                     $location.path("/");
                 },
                 function error(err) {
@@ -47,7 +45,6 @@ app.controller('UserController',
                 notifyService.showWarning("Please choose gender.");
                 return;
             }
-            var _this = this;
 
             userService.register(userData,
                 function success(data) {
@@ -72,8 +69,8 @@ app.controller('UserController',
                     userService.deleteDataAboutMe();
                     notifyService.showInfo("Logout successfully");
                     setTimeout(function(){
-                            window.location.reload();
-                        }, 500);
+                        window.location.reload();
+                    }, 500);
                 }, function error (err) {
                     notifyService.showError("Logout failed", err);
                 }
@@ -95,7 +92,6 @@ app.controller('UserController',
         $scope.getUserWall = function () {
             userService.getUserWall($routeParams.id,
                 function success(data) {
-                    console.log(data);
                     $scope.userWallData = data;
                 }, function error (err) {
                     notifyService.showError("Wall failed", err);
@@ -106,7 +102,6 @@ app.controller('UserController',
         $scope.getUserWallFriendsPreveiw = function () {
             userService.getUserWallFriendsPreveiw($routeParams.id,
                 function success(data) {
-                    console.log(data);
                     $scope.userWallFriendsPreveiw = data;
                 }, function error (err) {
                     notifyService.showError("friend preview failed", err);
@@ -115,11 +110,9 @@ app.controller('UserController',
         }
 
         $scope.getAllFriends = function () {
-            console.log($routeParams.id);
             userService.getAllFriends($routeParams.id,
                 function success(data) {
                     $scope.allFriends = data;
-                    console.log(data);
                 }, function error (err) {
                     notifyService.showError("friend preview failed", err);
                 }
@@ -135,6 +128,5 @@ app.controller('UserController',
                 }
             );
         }
-
     }
 );
