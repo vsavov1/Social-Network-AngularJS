@@ -2,7 +2,7 @@
 <div  ng-init="getUserWallFriendsPreveiw()" ng-if="userWallData.isFriend">
 	<div id="userFriendsPreview" >
 		<p id="postsTitle">Friends: </p>
-		<div id="userFriendsPreviewUser" ng-repeat="user in userWallFriendsPreveiw.friends">
+		<div id="userFriendsPreviewUser" ng-if="isLoggedIn" ng-repeat="user in userWallFriendsPreveiw.friends">
 			<a href="#/users/{{user.username}}"><img src="{{user.profileImageData}}" alt=""></a>
 			<p><a href="#/users/{{user.username}}">{{user.name}}</a></p>
 		</div>
@@ -19,7 +19,7 @@
 </div>
 
 </div>
-<div ng-controller="PostController">
+<div ng-controller="PostController" ng-if="isLoggedIn">
 <div id="posts"  infinite-scroll="getWallPosts()"
 infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 <p id="postsTitle2">Posts: </p>
@@ -37,10 +37,10 @@ infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 				</div>
 				<p id="feedPostLikes">Likes: <span>{{post.likesCount}}</span></p>
 				<p id="feedPostLikes">Comments: <span>{{post.totalCommentsCount}}</span></p>
-				<div ng-if="post.liked == false && userWallData.isFriend" ng-controller="PostController">
+				<div ng-if="post.liked == false && (userWallData.isFriend || post.author.isFriend)" ng-controller="PostController">
 					<a  class="likeDislikeButton" id="likeButton"ng-click="likePost(post.id, this)">Like</a>
 				</div>
-				<div ng-if="post.liked != false && userWallData.isFriend" ng-controller="PostController">
+				<div ng-if="post.liked != false && (userWallData.isFriend || post.author.isFriend)" ng-controller="PostController">
 					<a class="likeDislikeButton" id="dislikeButton" ng-click="dislikePost(post.id, this)">Dislike</a>
 				</div>
 			</div>
@@ -56,7 +56,7 @@ infinite-scroll-disabled='wallBusy' infinite-scroll-distance="0">
 				<p id="feedPostContent">{{post.postContent}}</p>
 				<div ng-controller="CommentController">
 					<div ng-if="(post.wallOwner.isFriend || post.author.isFriend) || post.wallOwner.username == userData.currentUsername">
-						<div ng-if="post.wallOwner.isFriend || post.wallOwner.username == userData.currentUsername">
+						<div ng-if="post.author.isFriend || post.wallOwner.isFriend || post.wallOwner.username == userData.currentUsername">
 						<button id="showCommentTextArea" ng-click="showCommentTextArea()">Comment</button>
 					</div>
 					<div ng-if="post.wallOwner.username == userData.currentUsername || post.author.username == userData.currentUsername" ng-controller="PostController">

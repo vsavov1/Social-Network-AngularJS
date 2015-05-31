@@ -27,6 +27,9 @@ app.controller('CommentController',
             commentService.deleteComment(postId,commentId,
             function success(data) {
                 notifyService.showInfo("Comment successfully deleted");
+                setTimeout(function(){
+                    window.location.reload();
+                }, 500);
             },
             function error(err) {
                 notifyService.showError("Like failed", err);
